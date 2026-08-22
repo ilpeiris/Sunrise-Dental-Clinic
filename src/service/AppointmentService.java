@@ -23,11 +23,18 @@ public class AppointmentService {
     }
 
     public boolean processRegistration(Patient patient, Appointment appointment) {
-        //// if patient doesnt exist in DB, register them first (<<extend>> logic)
-        if (!patientDAO.patientExists(patient.getContactNumber())) {
-            patientDAO.addPatient(patient);
+
+        int patientDbId = patientDAO.getPatientIdByContact(patient.getContactNumber());
+        
+
+        if (patientDbId == -1) {
+            patientDbId = patientDAO.addPatientAndGetId(patient);
         }
         
+      
+        appointment.setPatientId(patientDbId);
+        
+     
         return appointmentDAO.addAppointment(appointment);
     }
 }

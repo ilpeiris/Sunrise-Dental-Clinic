@@ -226,13 +226,15 @@ public class AppointmentForm extends javax.swing.JFrame {
 
     if (success) {
         javax.swing.JOptionPane.showMessageDialog(this, "Appointment Registered Successfully!");
-        // Clear fields
-        txtApptNo.setText(""); txtPatientName.setText(""); txtContact.setText("");
+        // Clear ALL fields to prevent accidental double-booking
+        txtApptNo.setText(""); 
+        txtPatientName.setText(""); 
+        txtContact.setText("");
+        txtDate.setText(""); 
+        txtTime.setText(""); 
     } else {
         javax.swing.JOptionPane.showMessageDialog(this, "Failed to register. Please check for double-booking.", "Database Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-    
-}
-        
+    }
         
         
         

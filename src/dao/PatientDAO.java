@@ -15,9 +15,10 @@ import exception.DatabaseConnectionException;
  */
 public class PatientDAO {
     
-    public boolean patientExists(String contactNumber) {
-        boolean exists = false;
-        String sql = "SELECT * FROM patient WHERE contact_number=?";
+    // Checks if patient exists and returns their Database ID
+    public int getPatientIdByContact(String contactNumber) {
+        int id = -1;
+        String sql = "SELECT id FROM patient WHERE contact_number=?";
         
         try (Connection con = DBConnection.getInstance();
              PreparedStatement pst = con.prepareStatement(sql)) {
@@ -25,31 +26,39 @@ public class PatientDAO {
             pst.setString(1, contactNumber);
             try (ResultSet rs = pst.executeQuery()) {
                 if (rs.next()) {
-                    exists = true;
+                    id = rs.getInt("id");
                 }
             }
         } catch (SQLException | DatabaseConnectionException e) {
             System.out.println("Patient Lookup Error: " + e.getMessage());
         }
-        return exists;
+        return id;
     }
 
-    public boolean addPatient(Patient p) {
+    // Adds a new patient and returns their newly generated Database ID
+    public int addPatientAndGetId(Patient p) {
         String sql = "INSERT INTO patient (patient_id, name, address, contact_number) VALUES (?, ?, ?, ?)";
         
         try (Connection con = DBConnection.getInstance();
-             PreparedStatement pst = con.prepareStatement(sql)) {
+             // Request MySQL to return the auto-generated keys
+             PreparedStatement pst = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
              
             pst.setString(1, p.getPatientId());
             pst.setString(2, p.getName());
             pst.setString(3, p.getAddress());
             pst.setString(4, p.getContactNumber());
             
-            int rows = pst.executeUpdate();
-            return rows > 0;
+            pst.executeUpdate();
+            
+            // Retrieve the generated ID
+            try (ResultSet rs = pst.getGeneratedKeys()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            }
         } catch (SQLException | DatabaseConnectionException e) {
             System.out.println("Add Patient Error: " + e.getMessage());
-            return false;
         }
+        return -1;
     }
 }
