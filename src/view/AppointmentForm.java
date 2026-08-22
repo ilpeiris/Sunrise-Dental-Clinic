@@ -17,6 +17,7 @@ public class AppointmentForm extends javax.swing.JFrame {
      */
     public AppointmentForm() {
         initComponents();
+        loadTable();
     }
 
     /**
@@ -175,6 +176,31 @@ public class AppointmentForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+
+    private void loadTable() {
+        try {
+            dao.AppointmentDAO dao = new dao.AppointmentDAO();
+            java.sql.ResultSet rs = dao.getAllAppointments();
+            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tblAppointments.getModel();
+            
+            model.setRowCount(0); 
+            
+            while (rs != null && rs.next()) {
+                model.addRow(new Object[]{
+                    rs.getString("appointment_no"),
+                    rs.getDate("appt_date"),
+                    rs.getString("appt_time"),
+                    rs.getString("name") 
+                });
+            }
+        } catch (Exception e) {
+            System.out.println("Table Load Error: " + e.getMessage());
+        }
+    }
+    
+    
+    
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         
@@ -232,6 +258,7 @@ public class AppointmentForm extends javax.swing.JFrame {
         txtContact.setText("");
         txtDate.setText(""); 
         txtTime.setText(""); 
+        loadTable();
     } else {
         javax.swing.JOptionPane.showMessageDialog(this, "Failed to register. Please check for double-booking.", "Database Error", javax.swing.JOptionPane.ERROR_MESSAGE);
     }

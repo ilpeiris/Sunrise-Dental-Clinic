@@ -39,4 +39,22 @@ public class AppointmentDAO {
             return false; 
         }
     }
+    
+    
+
+    public java.sql.ResultSet getAllAppointments() {
+        java.sql.ResultSet rs = null;
+        try {
+            java.sql.Connection con = db.DBConnection.getInstance();
+            
+            String sql = "SELECT a.appointment_no, a.appt_date, a.appt_time, p.name " +
+                         "FROM appointment a JOIN patient p ON a.patient_id = p.id";
+            java.sql.PreparedStatement pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+        } catch (Exception e) {
+            System.out.println("Fetch Appointments Error: " + e.getMessage());
+        }
+        return rs;
+    }
+    
 }
