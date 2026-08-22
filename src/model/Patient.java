@@ -9,13 +9,13 @@ package model;
  * @author ilpeiris
  */
 public class Patient extends Person{
-    private String patientID;
+    private String patientId;
     
     public Patient() {
         super();
     }
     
-    public String getPatientID() { return patientID; }
-    public void setPatientID(String paientID) { this.patientID = patientID; }
+    public String getPatientId() { return patientId; }
+    public void setPatientId(String patientId) { this.patientId = patientId; }
     
 }
