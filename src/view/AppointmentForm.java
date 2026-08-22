@@ -66,7 +66,7 @@ public class AppointmentForm extends javax.swing.JFrame {
 
         jLabel7.setText("Select Treatment:");
 
-        cmbDentist.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 - Dr. Smith", " " }));
+        cmbDentist.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 - Dr. Isuru", "2 - Dr. Peiris", " " }));
 
         cmbTreatment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "General Cleaning", "Tooth Extraction", "Root Canal", "Teeth Whitening" }));
 
