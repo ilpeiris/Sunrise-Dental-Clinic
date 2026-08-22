@@ -6,6 +6,7 @@ package dao;
 
 
 import java.sql.*;
+import model.Bill;
 import db.DBConnection;
 import exception.DatabaseConnectionException;
 
@@ -35,4 +36,30 @@ public class BillDAO {
             return false;
         }
     }
+
+
+//Fetches the completed bill to send to the printer
+    public Bill getBillDetails(String billNo) {
+        Bill bill = null;
+        String sql = "SELECT * FROM bill WHERE bill_no = ?";
+        
+        try (Connection con = DBConnection.getInstance();
+             PreparedStatement pst = con.prepareStatement(sql)) {
+             
+            pst.setString(1, billNo);
+            try (ResultSet rs = pst.executeQuery()) {
+                if (rs.next()) {
+                    bill = new Bill();
+                    bill.setBillNo(rs.getString("bill_no"));
+                    bill.setAppointmentId(rs.getInt("appointment_id"));
+                    bill.setTotalCost(rs.getDouble("total_cost")); //total cost
+                }
+            }
+        } catch (SQLException | DatabaseConnectionException e) {
+            System.out.println("Fetch Bill Error: " + e.getMessage());
+        }
+        return bill;
+    }
 }
+
+
