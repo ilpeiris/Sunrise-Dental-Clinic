@@ -47,6 +47,8 @@ public class AppointmentForm extends javax.swing.JFrame {
         tblAppointments = new javax.swing.JTable();
         btnSave = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        txtAddress = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,7 +66,7 @@ public class AppointmentForm extends javax.swing.JFrame {
 
         jLabel7.setText("Select Treatment:");
 
-        cmbDentist.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dr. Smith", " " }));
+        cmbDentist.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 - Dr. Smith", " " }));
 
         cmbTreatment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "General Cleaning", "Tooth Extraction", "Root Canal", "Teeth Whitening" }));
 
@@ -87,10 +89,25 @@ public class AppointmentForm extends javax.swing.JFrame {
         btnBack.setText("Back");
         btnBack.addActionListener(this::btnBackActionPerformed);
 
+        jLabel8.setText("Address");
+
+        txtAddress.addActionListener(this::txtAddressActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(btnSave)
+                        .addGap(79, 79, 79)
+                        .addComponent(btnBack)))
+                .addGap(0, 45, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,31 +129,22 @@ public class AppointmentForm extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel8))
                         .addGap(91, 91, 91)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtApptNo, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                            .addComponent(txtApptNo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
                             .addComponent(txtPatientName)
                             .addComponent(txtContact)
                             .addComponent(txtDate)
-                            .addComponent(txtTime))
+                            .addComponent(txtTime)
+                            .addComponent(txtAddress))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(btnSave)
-                        .addGap(79, 79, 79)
-                        .addComponent(btnBack)))
-                .addGap(0, 45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtApptNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -149,6 +157,10 @@ public class AppointmentForm extends javax.swing.JFrame {
                     .addComponent(txtContact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
@@ -170,7 +182,7 @@ public class AppointmentForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave)
                     .addComponent(btnBack))
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
 
         pack();
@@ -205,15 +217,18 @@ public class AppointmentForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         
 
+    // 1. Gather Input
     String apptNo = txtApptNo.getText().trim();
     String patientName = txtPatientName.getText().trim();
     String contact = txtContact.getText().trim();
+    String address = txtAddress.getText().trim(); 
     String dateStr = txtDate.getText().trim();
     String timeStr = txtTime.getText().trim();
     String selectedTreatment = cmbTreatment.getSelectedItem().toString();
+    String selectedDentist = cmbDentist.getSelectedItem().toString();
     
-    //Strict Validations 
-    if (patientName.isEmpty() || contact.isEmpty() || apptNo.isEmpty()) {
+
+    if (patientName.isEmpty() || contact.isEmpty() || apptNo.isEmpty() || address.isEmpty() || dateStr.isEmpty() || timeStr.isEmpty()) {
         javax.swing.JOptionPane.showMessageDialog(this, "All fields are required!", "Validation Error", javax.swing.JOptionPane.ERROR_MESSAGE);
         return;
     }
@@ -226,43 +241,56 @@ public class AppointmentForm extends javax.swing.JFrame {
         return;
     }
 
-    //Create Objects
+
     model.Patient patient = new model.Patient();
-    patient.setPatientId("P" + System.currentTimeMillis()); // Generate random ID
+    patient.setPatientId("P" + System.currentTimeMillis()); // Generate Patient ID
     patient.setName(patientName);
     patient.setContactNumber(contact);
-    patient.setAddress("N/A"); 
+    patient.setAddress(address); 
+    
     
     model.Appointment appt = new model.Appointment();
     appt.setAppointmentNo(apptNo);
     appt.setApptDate(java.sql.Date.valueOf(dateStr));
     appt.setApptTime(timeStr);
-    appt.setDentistId(1); 
     
- 
+    
+    int dentistId = Integer.parseInt(selectedDentist.split(" ")[0]); 
+    appt.setDentistId(dentistId);
+    
+    
     model.Treatment treatment = pattern.TreatmentFactory.getTreatment(selectedTreatment);
     if (treatment != null) {
-   
         appt.setTreatmentId(Integer.parseInt(treatment.getTreatmentId().replaceAll("[^0-9]", "")));
     }
 
-
+    // Service Layer
     service.AppointmentService apptService = new service.AppointmentService();
     boolean success = apptService.processRegistration(patient, appt);
 
     if (success) {
         javax.swing.JOptionPane.showMessageDialog(this, "Appointment Registered Successfully!");
+        
+        //  Simulating SMS Alert
+        System.out.println("=====================================");
+        System.out.println(">> SMS ALERT TRIGGERED <<");
+        System.out.println("To: " + contact);
+        System.out.println("Message: Hello " + patientName + ", your appointment (" + apptNo + ") is confirmed for " + dateStr + " at " + timeStr + ".");
+        System.out.println("=====================================\n");
+
         // Clear ALL fields to prevent accidental double-booking
         txtApptNo.setText(""); 
         txtPatientName.setText(""); 
         txtContact.setText("");
+        txtAddress.setText(""); 
         txtDate.setText(""); 
         txtTime.setText(""); 
-        loadTable();
+        
+        // Refresh the JTable
+        loadTable(); 
     } else {
         javax.swing.JOptionPane.showMessageDialog(this, "Failed to register. Please check for double-booking.", "Database Error", javax.swing.JOptionPane.ERROR_MESSAGE);
     }
-        
         
         
         
@@ -278,6 +306,10 @@ public class AppointmentForm extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void txtAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAddressActionPerformed
 
     /**
      * @param args the command line arguments
@@ -316,8 +348,10 @@ public class AppointmentForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblAppointments;
+    private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtApptNo;
     private javax.swing.JTextField txtContact;
     private javax.swing.JTextField txtDate;
