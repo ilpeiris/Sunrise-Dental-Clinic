@@ -17,6 +17,7 @@ public class BillingForm extends javax.swing.JFrame {
      */
     public BillingForm() {
         initComponents();
+        generateNextBillNo();
     }
 
     /**
@@ -111,6 +112,9 @@ public class BillingForm extends javax.swing.JFrame {
             "Bill Generated & Printed Successfully!\nPlease check the system console for the receipt.");
         txtApptNo.setText("");
         txtBillNo.setText("");
+        
+        generateNextBillNo();
+        
     } else {
         javax.swing.JOptionPane.showMessageDialog(this, 
             "Error generating bill. Please verify the Appointment Number is correct.", 
@@ -131,6 +135,18 @@ public class BillingForm extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnBackActionPerformed
 
+    
+    
+    private void generateNextBillNo() {
+        dao.BillDAO dao = new dao.BillDAO();
+        txtBillNo.setText(dao.getAutoBillNo());
+        txtBillNo.setEditable(false); 
+    }
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */

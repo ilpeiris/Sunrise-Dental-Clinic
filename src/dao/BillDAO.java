@@ -60,6 +60,31 @@ public class BillDAO {
         }
         return bill;
     }
+    
+    
+    
+    // Auto generate the next Bill Number
+    public String getAutoBillNo() {
+        String newBillNo = "B001";
+        String sql = "SELECT bill_no FROM bill ORDER BY id DESC LIMIT 1";
+        
+        try (java.sql.Connection con = db.DBConnection.getInstance();
+             java.sql.Statement st = con.createStatement();
+             java.sql.ResultSet rs = st.executeQuery(sql)) {
+             
+            if (rs.next()) {
+                String lastNo = rs.getString("bill_no"); 
+                int num = Integer.parseInt(lastNo.substring(1)); 
+                newBillNo = String.format("B%03d", num + 1); 
+            }
+        } catch (Exception e) {
+            System.out.println("Auto-Gen Bill Error: " + e.getMessage());
+        }
+        return newBillNo;
+    }
+    
+    
+    
 }
 
 

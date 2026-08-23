@@ -18,6 +18,7 @@ public class AppointmentForm extends javax.swing.JFrame {
     public AppointmentForm() {
         initComponents();
         loadTable();
+        generateNextApptNo();
     }
 
     /**
@@ -49,6 +50,8 @@ public class AppointmentForm extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         txtAddress = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,21 +96,15 @@ public class AppointmentForm extends javax.swing.JFrame {
 
         txtAddress.addActionListener(this::txtAddressActionPerformed);
 
+        txtSearch.setText("jTextField1");
+
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(this::btnSearchActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(btnSave)
-                        .addGap(79, 79, 79)
-                        .addComponent(btnBack)))
-                .addGap(0, 45, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,6 +137,22 @@ public class AppointmentForm extends javax.swing.JFrame {
                             .addComponent(txtTime)
                             .addComponent(txtAddress))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(btnSave)
+                        .addGap(79, 79, 79)
+                        .addComponent(btnBack))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(206, 206, 206)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSearch)))
+                .addGap(0, 127, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,13 +189,17 @@ public class AppointmentForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(cmbTreatment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearch))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave)
                     .addComponent(btnBack))
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
         pack();
@@ -211,7 +228,11 @@ public class AppointmentForm extends javax.swing.JFrame {
         }
     }
     
-    
+    private void generateNextApptNo() {
+        dao.AppointmentDAO dao = new dao.AppointmentDAO();
+        txtApptNo.setText(dao.getAutoAppointmentNo());
+        txtApptNo.setEditable(false); 
+    }
     
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
@@ -288,6 +309,7 @@ public class AppointmentForm extends javax.swing.JFrame {
         
         // Refresh the JTable
         loadTable(); 
+        generateNextApptNo();
     } else {
         javax.swing.JOptionPane.showMessageDialog(this, "Failed to register. Please check for double-booking.", "Database Error", javax.swing.JOptionPane.ERROR_MESSAGE);
     }
@@ -310,6 +332,33 @@ public class AppointmentForm extends javax.swing.JFrame {
     private void txtAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddressActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAddressActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        
+        String searchKeyword = txtSearch.getText().trim();
+    
+    try {
+        dao.AppointmentDAO dao = new dao.AppointmentDAO();
+        java.sql.ResultSet rs = dao.searchAppointment(searchKeyword); 
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tblAppointments.getModel();
+        
+        model.setRowCount(0); 
+        
+        while (rs != null && rs.next()) {
+            model.addRow(new Object[]{
+                rs.getString("appointment_no"),
+                rs.getDate("appt_date"),
+                rs.getString("appt_time"),
+                rs.getString("name")
+            });
+        }
+    } catch (Exception e) {
+        System.out.println("Search UI Error: " + e.getMessage());
+    }
+        
+        
+    }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -339,6 +388,7 @@ public class AppointmentForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JComboBox<String> cmbDentist;
     private javax.swing.JComboBox<String> cmbTreatment;
     private javax.swing.JLabel jLabel1;
@@ -356,6 +406,7 @@ public class AppointmentForm extends javax.swing.JFrame {
     private javax.swing.JTextField txtContact;
     private javax.swing.JTextField txtDate;
     private javax.swing.JTextField txtPatientName;
+    private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtTime;
     // End of variables declaration//GEN-END:variables
 }
