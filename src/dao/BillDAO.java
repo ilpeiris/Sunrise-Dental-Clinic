@@ -38,30 +38,51 @@ public class BillDAO {
     }
 
 
-//Fetches the completed bill to send to the printer
+
     public Bill getBillDetails(String billNo) {
         Bill bill = null;
-        String sql = "SELECT * FROM bill WHERE bill_no = ?";
+        String sql = "SELECT b.bill_no, b.appointment_id, b.total_cost, p.name, p.contact_number " +
+                     "FROM bill b " +
+                     "JOIN appointment a ON b.appointment_id = a.id " +
+                     "JOIN patient p ON a.patient_id = p.id " +
+                     "WHERE b.bill_no = ?";
         
-        try (Connection con = DBConnection.getInstance();
-             PreparedStatement pst = con.prepareStatement(sql)) {
+        try (java.sql.Connection con = db.DBConnection.getInstance();
+             java.sql.PreparedStatement pst = con.prepareStatement(sql)) {
              
             pst.setString(1, billNo);
-            try (ResultSet rs = pst.executeQuery()) {
+            try (java.sql.ResultSet rs = pst.executeQuery()) {
                 if (rs.next()) {
                     bill = new Bill();
                     bill.setBillNo(rs.getString("bill_no"));
                     bill.setAppointmentId(rs.getInt("appointment_id"));
-                    bill.setTotalCost(rs.getDouble("total_cost")); //total cost
+                    bill.setTotalCost(rs.getDouble("total_cost"));
+                    bill.setPatientName(rs.getString("name"));           // N
+                    bill.setContactNumber(rs.getString("contact_number")); // N
                 }
             }
-        } catch (SQLException | DatabaseConnectionException e) {
+        } catch (Exception e) {
             System.out.println("Fetch Bill Error: " + e.getMessage());
         }
         return bill;
     }
     
-    
+    // fetches bills for the hstry table
+    public java.sql.ResultSet getAllBills() {
+        java.sql.ResultSet rs = null;
+        String sql = "SELECT b.bill_no, a.appointment_no, p.name, b.total_cost " +
+                     "FROM bill b " +
+                     "JOIN appointment a ON b.appointment_id = a.id " +
+                     "JOIN patient p ON a.patient_id = p.id";
+        try {
+            java.sql.Connection con = db.DBConnection.getInstance();
+            java.sql.PreparedStatement pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+        } catch (Exception e) {
+            System.out.println("Fetch Bill History Error: " + e.getMessage());
+        }
+        return rs;
+    }
     
     // Auto generate the next Bill Number
     public String getAutoBillNo() {

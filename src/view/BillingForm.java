@@ -18,6 +18,7 @@ public class BillingForm extends javax.swing.JFrame {
     public BillingForm() {
         initComponents();
         generateNextBillNo();
+        loadBillTable();
     }
 
     /**
@@ -35,6 +36,8 @@ public class BillingForm extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblBills = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,23 +51,44 @@ public class BillingForm extends javax.swing.JFrame {
 
         jLabel2.setText("Bill No:");
 
+        tblBills.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Bill No", "Appt No", "Patient Name", "Total Cost"
+            }
+        ));
+        jScrollPane1.setViewportView(tblBills);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBack)
-                    .addComponent(btnGenerate)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtBillNo, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtApptNo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)))
-                .addGap(108, 108, 108))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnGenerate)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtBillNo, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtApptNo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)))
+                        .addGap(108, 108, 108))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnBack)
+                        .addGap(179, 179, 179))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,9 +103,11 @@ public class BillingForm extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addComponent(btnGenerate)
-                .addGap(18, 18, 18)
+                .addGap(67, 67, 67)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
                 .addComponent(btnBack)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
 
         pack();
@@ -111,9 +137,10 @@ public class BillingForm extends javax.swing.JFrame {
         javax.swing.JOptionPane.showMessageDialog(this, 
             "Bill Generated & Printed Successfully!\nPlease check the system console for the receipt.");
         txtApptNo.setText("");
-        txtBillNo.setText("");
+        //txtBillNo.setText("");
         
         generateNextBillNo();
+        loadBillTable();
         
     } else {
         javax.swing.JOptionPane.showMessageDialog(this, 
@@ -125,6 +152,33 @@ public class BillingForm extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnGenerateActionPerformed
 
+    
+    
+    
+    private void loadBillTable() {
+        try {
+            dao.BillDAO dao = new dao.BillDAO();
+            java.sql.ResultSet rs = dao.getAllBills();
+            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tblBills.getModel();
+            model.setRowCount(0); 
+            
+            while (rs != null && rs.next()) {
+                model.addRow(new Object[]{
+                    rs.getString("bill_no"),
+                    rs.getString("appointment_no"),
+                    rs.getString("name"),
+                    rs.getDouble("total_cost")
+                });
+            }
+        } catch (Exception e) {
+            System.out.println("Table Load Error: " + e.getMessage());
+        }
+    }
+    
+    
+    
+    
+    
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         
@@ -177,6 +231,8 @@ public class BillingForm extends javax.swing.JFrame {
     private javax.swing.JButton btnGenerate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblBills;
     private javax.swing.JTextField txtApptNo;
     private javax.swing.JTextField txtBillNo;
     // End of variables declaration//GEN-END:variables

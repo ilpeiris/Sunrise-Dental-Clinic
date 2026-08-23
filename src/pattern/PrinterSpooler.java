@@ -26,14 +26,29 @@ public class PrinterSpooler {
     }
 
 
+    
     public void printReceipt(Bill newBill) {
-        System.out.println("=====================================");
-        System.out.println("       SUNRISE DENTAL CLINIC         ");
-        System.out.println("=====================================");
-        System.out.println("Bill No: " + newBill.getBillNo());
-        System.out.println("Appointment ID Ref: " + newBill.getAppointmentId());
-        System.out.println("Total Cost: LKR " + newBill.getTotalCost());
-        System.out.println("=====================================");
-        System.out.println("Thank you!.\n");
+        String receiptContent = 
+            "=====================================\n" +
+            "       SUNRISE DENTAL CLINIC         \n" +
+            "=====================================\n" +
+            "Bill No: " + newBill.getBillNo() + "\n" +
+            "Patient Name: " + newBill.getPatientName() + "\n" +
+            "Contact: " + newBill.getContactNumber() + "\n" +
+            "Appointment Ref ID: " + newBill.getAppointmentId() + "\n" +
+            "Total Cost: LKR " + newBill.getTotalCost() + "\n" +
+            "=====================================\n" +
+            "Thank you! Please visit again.\n";
+            
+      
+        System.out.println(receiptContent);
+
+        // txt file
+        try (java.io.FileWriter writer = new java.io.FileWriter("Bill_" + newBill.getBillNo() + ".txt")) {
+            writer.write(receiptContent);
+            System.out.println("File saved: Bill_" + newBill.getBillNo() + ".txt");
+        } catch (java.io.IOException e) {
+            System.out.println("File Write Error: " + e.getMessage());
+        }
     }
 }
