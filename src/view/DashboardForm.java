@@ -17,8 +17,32 @@ public class DashboardForm extends javax.swing.JFrame {
      */
     public DashboardForm() {
         initComponents();
+        loadDashboardData();
     }
 
+    
+    //load session data and analytics
+    private void loadDashboardData() {
+        // fetch Session Data
+        String currentUser = pattern.UserSession.getInstance().getLoggedInUser();
+        String loginTime = pattern.UserSession.getInstance().getLoginTime();
+        
+        // update the Welcome Label
+        if (currentUser != null) {
+            lblWelcome.setText("Welcome, " + currentUser + " (Logged in at: " + loginTime + ")");
+        } else {
+            lblWelcome.setText("Welcome, Guest");
+        }
+
+        // fetch Analytics
+        dao.DashboardDAO dashboardDAO = new dao.DashboardDAO();
+        int totalAppts = dashboardDAO.getTotalAppointments();
+        lblTotalAppointments.setText("Total Appointments Booked: " + totalAppts);
+    }
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,6 +55,8 @@ public class DashboardForm extends javax.swing.JFrame {
         btnAppointments = new javax.swing.JButton();
         btnBilling = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
+        lblWelcome = new javax.swing.JLabel();
+        lblTotalAppointments = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,22 +69,37 @@ public class DashboardForm extends javax.swing.JFrame {
         btnLogout.setText("Exit");
         btnLogout.addActionListener(this::btnLogoutActionPerformed);
 
+        lblWelcome.setText("jLabel1");
+
+        lblTotalAppointments.setText("jLabel2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(131, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAppointments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBilling, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(117, 117, 117))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAppointments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnBilling, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(117, 117, 117))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblTotalAppointments)
+                            .addComponent(lblWelcome))
+                        .addGap(178, 178, 178))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
+                .addGap(18, 18, 18)
+                .addComponent(lblWelcome)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblTotalAppointments)
+                .addGap(12, 12, 12)
                 .addComponent(btnAppointments)
                 .addGap(18, 18, 18)
                 .addComponent(btnBilling)
@@ -94,9 +135,14 @@ public class DashboardForm extends javax.swing.JFrame {
             javax.swing.JOptionPane.YES_NO_OPTION);
         
         if (response == javax.swing.JOptionPane.YES_OPTION) {
-            LoginForm login = new LoginForm();
-            login.setVisible(true);
-            this.dispose();}
+        //clear session
+        pattern.UserSession.getInstance().clearSession();
+        
+        LoginForm login = new LoginForm();
+        login.setVisible(true);
+        this.dispose();
+        
+        }
         
     }//GEN-LAST:event_btnLogoutActionPerformed
 
@@ -129,5 +175,7 @@ public class DashboardForm extends javax.swing.JFrame {
     private javax.swing.JButton btnAppointments;
     private javax.swing.JButton btnBilling;
     private javax.swing.JButton btnLogout;
+    private javax.swing.JLabel lblTotalAppointments;
+    private javax.swing.JLabel lblWelcome;
     // End of variables declaration//GEN-END:variables
 }

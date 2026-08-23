@@ -103,7 +103,11 @@ public class LoginForm extends javax.swing.JFrame {
     boolean isValid = authService.authenticate(username, password);
 
     if (isValid) {
+        //start the user sessionn
+        pattern.UserSession.getInstance().startSession(username);
+        
         javax.swing.JOptionPane.showMessageDialog(this, "Login Successful! Welcome to Sunrise Dental.");
+        
         DashboardForm dashboard = new DashboardForm();
         dashboard.setVisible(true);
         
