@@ -1,0 +1,10 @@
+=====================================
+       SUNRISE DENTAL CLINIC         
+=====================================
+Bill No: B002
+Patient Name: Lakmal
+Contact: 0879587322
+Appointment Ref ID: 10
+Total Cost: LKR 16500.0
+=====================================
+Thank you! Please visit again.

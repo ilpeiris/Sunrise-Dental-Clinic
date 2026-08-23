@@ -57,6 +57,7 @@ public class DashboardForm extends javax.swing.JFrame {
         btnLogout = new javax.swing.JButton();
         lblWelcome = new javax.swing.JLabel();
         lblTotalAppointments = new javax.swing.JLabel();
+        btnHelp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,6 +74,9 @@ public class DashboardForm extends javax.swing.JFrame {
 
         lblTotalAppointments.setText("jLabel2");
 
+        btnHelp.setText("Help");
+        btnHelp.addActionListener(this::btnHelpActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,7 +89,9 @@ public class DashboardForm extends javax.swing.JFrame {
                     .addComponent(btnBilling, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(117, 117, 117))
             .addGroup(layout.createSequentialGroup()
-                .addGap(179, 179, 179)
+                .addGap(31, 31, 31)
+                .addComponent(btnHelp)
+                .addGap(73, 73, 73)
                 .addComponent(lblWelcome)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -104,9 +110,11 @@ public class DashboardForm extends javax.swing.JFrame {
                 .addComponent(btnBilling)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogout)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
-                .addComponent(lblWelcome)
-                .addGap(20, 20, 20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblWelcome)
+                    .addComponent(btnHelp))
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -147,6 +155,12 @@ public class DashboardForm extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnLogoutActionPerformed
 
+    private void btnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
+    HelpForm help = new HelpForm();
+    help.setVisible(true);
+    this.dispose();        
+    }//GEN-LAST:event_btnHelpActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -175,6 +189,7 @@ public class DashboardForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAppointments;
     private javax.swing.JButton btnBilling;
+    private javax.swing.JButton btnHelp;
     private javax.swing.JButton btnLogout;
     private javax.swing.JLabel lblTotalAppointments;
     private javax.swing.JLabel lblWelcome;
