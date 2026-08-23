@@ -17,7 +17,8 @@ public class DashboardDAO {
 // total number of appointments
     public int getTotalAppointments() {
         int count = 0;
-        String sql = "SELECT COUNT(*) AS total FROM appointment";
+        //String sql = "SELECT COUNT(*) AS total FROM appointment";
+        String sql = "SELECT COUNT(*) AS total FROM appointment WHERE appt_date = CURDATE()";
         
         try (Connection con = DBConnection.getInstance();
              Statement st = con.createStatement();
