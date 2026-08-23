@@ -44,9 +44,20 @@ public class PrinterSpooler {
         System.out.println(receiptContent);
 
         // txt file
-        try (java.io.FileWriter writer = new java.io.FileWriter("Bill_" + newBill.getBillNo() + ".txt")) {
-            writer.write(receiptContent);
-            System.out.println("File saved: Bill_" + newBill.getBillNo() + ".txt");
+        try {
+            
+            java.io.File directory = new java.io.File("bills");
+            if (!directory.exists()) {
+                directory.mkdirs(); 
+            }
+            
+           
+            String filePath = "bills/Bill_" + newBill.getBillNo() + ".txt";
+            
+            try (java.io.FileWriter writer = new java.io.FileWriter(filePath)) {
+                writer.write(receiptContent);
+                System.out.println("--> File saved successfully: " + filePath);
+            }
         } catch (java.io.IOException e) {
             System.out.println("File Write Error: " + e.getMessage());
         }
