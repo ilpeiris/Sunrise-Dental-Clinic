@@ -45,6 +45,7 @@ public class PrinterSpooler {
         System.out.println(receiptContent);
 
         // txt file
+        java.io.FileWriter writer = null;
         try {
             
             java.io.File directory = new java.io.File("bills");
@@ -55,12 +56,24 @@ public class PrinterSpooler {
            
             String filePath = "bills/Bill_" + newBill.getBillNo() + ".txt";
             
-            try (java.io.FileWriter writer = new java.io.FileWriter(filePath)) {
-                writer.write(receiptContent);
-                System.out.println("--> File saved successfully: " + filePath);
-            }
+           
+            writer = new java.io.FileWriter(filePath);
+            writer.write(receiptContent);
+            System.out.println("--> File saved successfully: " + filePath);
+            
         } catch (java.io.IOException e) {
             System.out.println("File Write Error: " + e.getMessage());
+            
+        } finally {
+           
+            System.out.println("Executing finally block: Cleaning up file resources.");
+            try {
+                if (writer != null) {
+                    writer.close(); 
+                }
+            } catch (java.io.IOException ex) {
+                System.out.println("Error closing writer: " + ex.getMessage());
+            }
         }
     }
 }
