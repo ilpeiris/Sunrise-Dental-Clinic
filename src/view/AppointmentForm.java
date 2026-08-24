@@ -34,9 +34,7 @@ public class AppointmentForm extends javax.swing.JFrame {
         txtApptNo = new javax.swing.JTextField();
         txtPatientName = new javax.swing.JTextField();
         txtContact = new javax.swing.JTextField();
-        txtDate = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        txtTime = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -53,6 +51,8 @@ public class AppointmentForm extends javax.swing.JFrame {
         txtAddress = new javax.swing.JTextField();
         txtSearch = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
+        txtDateChooser = new com.toedter.calendar.JDateChooser();
+        cmbTime = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,6 +98,8 @@ public class AppointmentForm extends javax.swing.JFrame {
         btnSearch.setText("Search");
         btnSearch.addActionListener(this::btnSearchActionPerformed);
 
+        cmbTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -119,20 +121,25 @@ public class AppointmentForm extends javax.swing.JFrame {
                         .addGap(69, 69, 69))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel8))
-                        .addGap(91, 91, 91)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtApptNo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-                            .addComponent(txtPatientName)
-                            .addComponent(txtContact)
-                            .addComponent(txtDate)
-                            .addComponent(txtTime)
-                            .addComponent(txtAddress))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel8))
+                                .addGap(91, 91, 91))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtApptNo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                                .addComponent(txtPatientName)
+                                .addComponent(txtContact)
+                                .addComponent(txtAddress)
+                                .addComponent(txtDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(cmbTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,15 +177,15 @@ public class AppointmentForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(txtDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(cmbTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(cmbDentist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -196,7 +203,7 @@ public class AppointmentForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave)
                     .addComponent(btnBack))
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
         pack();
@@ -254,13 +261,28 @@ public class AppointmentForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         
 
+        
+        
+        //Gather the Date from JDateChooser
+    java.util.Date selectedDate = txtDateChooser.getDate();
+    
+    if (selectedDate == null) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Please select an appointment date!", "Validation Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    // Format the date 4 MySQL
+    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+    String dateStr = sdf.format(selectedDate);
+    
+            
+        
     // 1. Gather Input
     String apptNo = txtApptNo.getText().trim();
     String patientName = txtPatientName.getText().trim();
     String contact = txtContact.getText().trim();
     String address = txtAddress.getText().trim(); 
-    String dateStr = txtDate.getText().trim();
-    String timeStr = txtTime.getText().trim();
+    //String dateStr = txtDate.getText().trim();
+    String timeStr = cmbTime.getSelectedItem().toString();
     String selectedTreatment = cmbTreatment.getSelectedItem().toString();
     String selectedDentist = cmbDentist.getSelectedItem().toString();
     
@@ -320,8 +342,8 @@ public class AppointmentForm extends javax.swing.JFrame {
         txtPatientName.setText(""); 
         txtContact.setText("");
         txtAddress.setText(""); 
-        txtDate.setText(""); 
-        txtTime.setText(""); 
+        cmbTime.setSelectedIndex(0); 
+        txtDateChooser.setDate(null); 
         
         // Refresh the JTable
         loadTable(); 
@@ -406,6 +428,7 @@ public class AppointmentForm extends javax.swing.JFrame {
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
     private javax.swing.JComboBox<String> cmbDentist;
+    private javax.swing.JComboBox<String> cmbTime;
     private javax.swing.JComboBox<String> cmbTreatment;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -420,9 +443,8 @@ public class AppointmentForm extends javax.swing.JFrame {
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtApptNo;
     private javax.swing.JTextField txtContact;
-    private javax.swing.JTextField txtDate;
+    private com.toedter.calendar.JDateChooser txtDateChooser;
     private javax.swing.JTextField txtPatientName;
     private javax.swing.JTextField txtSearch;
-    private javax.swing.JTextField txtTime;
     // End of variables declaration//GEN-END:variables
 }

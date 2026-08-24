@@ -1,0 +1,11 @@
+=====================================
+       SUNRISE DENTAL CLINIC         
+=====================================
+Bill No: B005
+Appointment No: A005
+Patient Name: peri
+Contact: 0787155678
+Attending Dentist: Dr. Smith
+Total Cost: LKR 4000.0
+=====================================
+Thank you! Please visit again.
