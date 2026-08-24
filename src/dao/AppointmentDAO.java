@@ -133,8 +133,24 @@ public class AppointmentDAO {
     
     
     
-    
-    
+   //todays pending appt in Billing Form
+    public java.sql.ResultSet getPendingAppointmentsToday() {
+        java.sql.ResultSet rs = null;
+        try {
+            java.sql.Connection con = db.DBConnection.getInstance();
+            
+            String sql = "SELECT a.appointment_no, p.name, a.appt_time " +
+                         "FROM appointment a " +
+                         "JOIN patient p ON a.patient_id = p.id " +
+                         "WHERE a.appt_date = CURDATE() " +
+                         "AND a.id NOT IN (SELECT appointment_id FROM bill)";
+            java.sql.PreparedStatement pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+        } catch (Exception e) {
+            System.out.println("Pending Appts Error: " + e.getMessage());
+        }
+        return rs;
+    }
     
     
     
