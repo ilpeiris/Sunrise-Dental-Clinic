@@ -18,8 +18,35 @@ public class DashboardForm extends javax.swing.JFrame {
     public DashboardForm() {
         initComponents();
         loadDashboardData();
+        
+    // Multithreading - live clock using thread and runnable
+        Thread clockThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    while (true) {
+                        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("hh:mm:ss a");
+                        lblLiveClock.setText("Current Time: " + sdf.format(new java.util.Date()));
+                        Thread.sleep(1000); // Thread pauses fr 1 sec
+                    }
+                } catch (InterruptedException e) {
+                    System.out.println("Clock Thread Interrupted: " + e.getMessage());
+                }
+            }
+        });
+        clockThread.start(); // Start the bg thread
     }
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     //load session data and analytics
     private void loadDashboardData() {
@@ -58,6 +85,7 @@ public class DashboardForm extends javax.swing.JFrame {
         lblWelcome = new javax.swing.JLabel();
         lblTotalAppointments = new javax.swing.JLabel();
         btnHelp = new javax.swing.JButton();
+        lblLiveClock = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,32 +105,42 @@ public class DashboardForm extends javax.swing.JFrame {
         btnHelp.setText("Help");
         btnHelp.addActionListener(this::btnHelpActionPerformed);
 
+        lblLiveClock.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(131, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAppointments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBilling, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(117, 117, 117))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(127, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnAppointments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBilling, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(lblTotalAppointments)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(122, 122, 122))
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(btnHelp)
-                .addGap(73, 73, 73)
-                .addComponent(lblWelcome)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(181, 181, 181)
-                .addComponent(lblTotalAppointments)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblWelcome)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnHelp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblLiveClock)
+                        .addGap(47, 47, 47))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(21, 21, 21)
+                .addComponent(lblWelcome)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addComponent(lblTotalAppointments)
                 .addGap(18, 18, 18)
                 .addComponent(btnAppointments)
@@ -110,10 +148,10 @@ public class DashboardForm extends javax.swing.JFrame {
                 .addComponent(btnBilling)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogout)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addGap(103, 103, 103)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblWelcome)
-                    .addComponent(btnHelp))
+                    .addComponent(btnHelp)
+                    .addComponent(lblLiveClock))
                 .addGap(16, 16, 16))
         );
 
@@ -191,6 +229,7 @@ public class DashboardForm extends javax.swing.JFrame {
     private javax.swing.JButton btnBilling;
     private javax.swing.JButton btnHelp;
     private javax.swing.JButton btnLogout;
+    private javax.swing.JLabel lblLiveClock;
     private javax.swing.JLabel lblTotalAppointments;
     private javax.swing.JLabel lblWelcome;
     // End of variables declaration//GEN-END:variables
