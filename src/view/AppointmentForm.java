@@ -461,7 +461,7 @@ java.util.Date selectedDate = filterDateChooser.getDate();
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         
-        txtApptNo.setText(""); 
+        //txtApptNo.setText(""); 
         txtPatientName.setText(""); 
         txtContact.setText("");
         txtAddress.setText(""); 
