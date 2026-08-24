@@ -21,4 +21,11 @@ public class Staff extends Person {
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
+    
+    
+    @Override
+    public String getRoleDescription() {
+        return "Role: Clinic Administrator";
+    }
+    
 }

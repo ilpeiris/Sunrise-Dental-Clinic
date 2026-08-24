@@ -24,4 +24,7 @@ public abstract class Person {
     public String getContactNumber() { return contactNumber; }
     public void setContactNumber(String contactNumber) { this.contactNumber = contactNumber; }
     
+    
+    public abstract String getRoleDescription();
+    
 }

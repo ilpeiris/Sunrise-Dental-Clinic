@@ -18,4 +18,8 @@ public class Patient extends Person{
     public String getPatientId() { return patientId; }
     public void setPatientId(String patientId) { this.patientId = patientId; }
     
+    @Override
+    public String getRoleDescription() {
+        return "Role: Registered Patient";
+    }
 }

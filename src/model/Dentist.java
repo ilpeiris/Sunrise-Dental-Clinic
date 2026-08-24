@@ -33,4 +33,12 @@ public class Dentist extends Person {
     public void setConsultationFee(double consultationFee) {
         this.consultationFee = consultationFee;
     }
+    
+    
+    
+    @Override
+    public String getRoleDescription() {
+        return "Role: Certified Dentist";
+    }
+    
 }
