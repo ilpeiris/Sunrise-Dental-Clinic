@@ -41,10 +41,11 @@ public class BillDAO {
 
     public Bill getBillDetails(String billNo) {
         Bill bill = null;
-        String sql = "SELECT b.bill_no, b.appointment_id, b.total_cost, p.name, p.contact_number " +
+        String sql = "SELECT b.bill_no, a.appointment_no, b.total_cost, p.name AS patient_name, p.contact_number, d.name AS dentist_name " +
                      "FROM bill b " +
                      "JOIN appointment a ON b.appointment_id = a.id " +
                      "JOIN patient p ON a.patient_id = p.id " +
+                     "JOIN dentist d ON a.dentist_id = d.id " +
                      "WHERE b.bill_no = ?";
         
         try (java.sql.Connection con = db.DBConnection.getInstance();
@@ -55,10 +56,11 @@ public class BillDAO {
                 if (rs.next()) {
                     bill = new Bill();
                     bill.setBillNo(rs.getString("bill_no"));
-                    bill.setAppointmentId(rs.getInt("appointment_id"));
+                    bill.setAppointmentNoStr(rs.getString("appointment_no"));
                     bill.setTotalCost(rs.getDouble("total_cost"));
-                    bill.setPatientName(rs.getString("name"));           // N
-                    bill.setContactNumber(rs.getString("contact_number")); // N
+                    bill.setPatientName(rs.getString("patient_name"));           
+                    bill.setContactNumber(rs.getString("contact_number")); 
+                    bill.setDentistName(rs.getString("dentist_name"));        
                 }
             }
         } catch (Exception e) {

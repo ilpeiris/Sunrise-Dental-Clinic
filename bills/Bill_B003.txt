@@ -1,0 +1,10 @@
+=====================================
+       SUNRISE DENTAL CLINIC         
+=====================================
+Bill No: B003
+Patient Name: isurus
+Contact: 0808080823
+Appointment Ref ID: 11
+Total Cost: LKR 16500.0
+=====================================
+Thank you! Please visit again.

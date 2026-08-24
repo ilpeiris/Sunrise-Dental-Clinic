@@ -16,6 +16,9 @@ public class Bill {
     
     private String patientName;
     private String contactNumber;
+    
+    private String appointmentNoStr; 
+    private String dentistName;      
 
     public Bill() {}
 
@@ -34,5 +37,13 @@ public class Bill {
 
     public String getContactNumber() { return contactNumber; }
     public void setContactNumber(String contactNumber) { this.contactNumber = contactNumber; }
+    
+    
+    public String getAppointmentNoStr() { return appointmentNoStr; }
+    public void setAppointmentNoStr(String appointmentNoStr) { this.appointmentNoStr = appointmentNoStr; }
+
+    public String getDentistName() { return dentistName; }
+    public void setDentistName(String dentistName) { this.dentistName = dentistName; }
+    
     
 }

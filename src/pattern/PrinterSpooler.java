@@ -33,9 +33,10 @@ public class PrinterSpooler {
             "       SUNRISE DENTAL CLINIC         \n" +
             "=====================================\n" +
             "Bill No: " + newBill.getBillNo() + "\n" +
+            "Appointment No: " + newBill.getAppointmentNoStr() + "\n" +
             "Patient Name: " + newBill.getPatientName() + "\n" +
             "Contact: " + newBill.getContactNumber() + "\n" +
-            "Appointment Ref ID: " + newBill.getAppointmentId() + "\n" +
+            "Attending Dentist: " + newBill.getDentistName() + "\n" +
             "Total Cost: LKR " + newBill.getTotalCost() + "\n" +
             "=====================================\n" +
             "Thank you! Please visit again.\n";
