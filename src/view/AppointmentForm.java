@@ -17,6 +17,7 @@ public class AppointmentForm extends javax.swing.JFrame {
      */
     public AppointmentForm() {
         initComponents();
+        loadDentists();
         loadTable();
         generateNextApptNo();
     }
@@ -69,8 +70,6 @@ public class AppointmentForm extends javax.swing.JFrame {
 
         jLabel7.setText("Select Treatment:");
 
-        cmbDentist.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 - Dr. Isuru", "2 - Dr. Peiris", " " }));
-
         cmbTreatment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "General Cleaning", "Tooth Extraction", "Root Canal", "Teeth Whitening" }));
 
         tblAppointments.setModel(new javax.swing.table.DefaultTableModel(
@@ -95,8 +94,6 @@ public class AppointmentForm extends javax.swing.JFrame {
         jLabel8.setText("Address");
 
         txtAddress.addActionListener(this::txtAddressActionPerformed);
-
-        txtSearch.setText("jTextField1");
 
         btnSearch.setText("Search");
         btnSearch.addActionListener(this::btnSearchActionPerformed);
@@ -148,8 +145,8 @@ public class AppointmentForm extends javax.swing.JFrame {
                         .addGap(52, 52, 52)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(206, 206, 206)
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(128, 128, 128)
+                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnSearch)))
                 .addGap(0, 127, Short.MAX_VALUE))
@@ -227,6 +224,25 @@ public class AppointmentForm extends javax.swing.JFrame {
             System.out.println("Table Load Error: " + e.getMessage());
         }
     }
+    
+    
+    private void loadDentists() {
+        cmbDentist.removeAllItems(); 
+        String sql = "SELECT id, name FROM dentist";
+        try (java.sql.Connection con = db.DBConnection.getInstance();
+             java.sql.Statement st = con.createStatement();
+             java.sql.ResultSet rs = st.executeQuery(sql)) {
+             
+            while (rs.next()) {
+                
+                cmbDentist.addItem(rs.getInt("id") + " - " + rs.getString("name"));
+            }
+        } catch (Exception e) {
+            System.out.println("Load Dentist Error: " + e.getMessage());
+        }
+    }
+    
+    
     
     private void generateNextApptNo() {
         dao.AppointmentDAO dao = new dao.AppointmentDAO();
