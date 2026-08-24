@@ -9,7 +9,7 @@ package model;
  * @author ilpeiris
  */
 
-public class Bill {
+public class Bill implements Printable {
     private String billNo;
     private int appointmentId;
     private double totalCost;
@@ -45,5 +45,8 @@ public class Bill {
     public String getDentistName() { return dentistName; }
     public void setDentistName(String dentistName) { this.dentistName = dentistName; }
     
-    
+    @Override
+    public String getPrintableDetails() {
+        return "Bill No: " + this.billNo + " | Total: LKR " + this.totalCost;
+    }
 }
