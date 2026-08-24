@@ -66,6 +66,27 @@ public class AppointmentDAO {
     
     
     
+    public java.sql.ResultSet searchAppointmentByDate(String dateStr) {
+        java.sql.ResultSet rs = null;
+        try {
+            java.sql.Connection con = db.DBConnection.getInstance();
+            String sql = "SELECT a.appointment_no, a.appt_date, a.appt_time, p.name AS patient_name, d.name AS dentist_name, t.treatment_type " +
+                         "FROM appointment a " +
+                         "JOIN patient p ON a.patient_id = p.id " +
+                         "JOIN dentist d ON a.dentist_id = d.id " +
+                         "JOIN treatment t ON a.treatment_id = t.id " +
+                         "WHERE a.appt_date = ?";
+            java.sql.PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, dateStr);
+            rs = pst.executeQuery();
+        } catch (Exception e) {
+            System.out.println("Date Filter Error: " + e.getMessage());
+        }
+        return rs;
+    }
+    
+    
+    
     
     
     
