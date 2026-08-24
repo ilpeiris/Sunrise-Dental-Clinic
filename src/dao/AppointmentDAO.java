@@ -50,8 +50,12 @@ public class AppointmentDAO {
         try {
             java.sql.Connection con = db.DBConnection.getInstance();
             
-            String sql = "SELECT a.appointment_no, a.appt_date, a.appt_time, p.name " +
-                         "FROM appointment a JOIN patient p ON a.patient_id = p.id";
+            String sql = "SELECT a.appointment_no, a.appt_date, a.appt_time, p.name AS patient_name, d.name AS dentist_name, t.treatment_type " +
+                         "FROM appointment a " +
+                         "JOIN patient p ON a.patient_id = p.id " +
+                         "JOIN dentist d ON a.dentist_id = d.id " +
+                         "JOIN treatment t ON a.treatment_id = t.id " +
+                         "ORDER BY a.appt_date DESC, a.appt_time ASC";
             java.sql.PreparedStatement pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
         } catch (Exception e) {
