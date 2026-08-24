@@ -86,15 +86,18 @@ public class AppointmentDAO {
     }
 
     // Search appointment
-    public java.sql.ResultSet searchAppointment(String apptNo) {
+    public java.sql.ResultSet searchAppointment(String keyword) {
         java.sql.ResultSet rs = null;
         try {
             java.sql.Connection con = db.DBConnection.getInstance();
+            // Searches with appt no, patient name, contact number
             String sql = "SELECT a.appointment_no, a.appt_date, a.appt_time, p.name " +
                          "FROM appointment a JOIN patient p ON a.patient_id = p.id " +
-                         "WHERE a.appointment_no LIKE ?"; 
+                         "WHERE a.appointment_no LIKE ? OR p.name LIKE ? OR p.contact_number LIKE ?";
             java.sql.PreparedStatement pst = con.prepareStatement(sql);
-            pst.setString(1, "%" + apptNo + "%");
+            pst.setString(1, "%" + keyword + "%");
+            pst.setString(2, "%" + keyword + "%");
+            pst.setString(3, "%" + keyword + "%");
             rs = pst.executeQuery();
         } catch (Exception e) {
             System.out.println("Search Appointments Error: " + e.getMessage());
