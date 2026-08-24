@@ -1,0 +1,11 @@
+=====================================
+       SUNRISE DENTAL CLINIC         
+=====================================
+Bill No: B008
+Appointment No: A008
+Patient Name: laka
+Contact: 1234567890
+Attending Dentist: Dr. Lakmal
+Total Cost: LKR 5500.0
+=====================================
+Thank you! Please visit again.

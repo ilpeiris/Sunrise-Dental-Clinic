@@ -20,8 +20,34 @@ public class AppointmentForm extends javax.swing.JFrame {
         loadDentists();
         loadTable();
         generateNextApptNo();
-    }
+    
 
+    
+    // Multithreading - live clock using thread and runnable
+        Thread clockThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    while (true) {
+                        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("hh:mm:ss a");
+                        lblLiveClock.setText("Current Time: " + sdf.format(new java.util.Date()));
+                        Thread.sleep(1000); 
+                    }
+                } catch (InterruptedException e) {
+                    System.out.println("Clock Thread Interrupted: " + e.getMessage());
+                }
+            }
+        });
+        clockThread.start(); 
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,6 +82,7 @@ public class AppointmentForm extends javax.swing.JFrame {
         filterDateChooser = new com.toedter.calendar.JDateChooser();
         btnFilterDate = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
+        lblLiveClock = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,6 +135,8 @@ public class AppointmentForm extends javax.swing.JFrame {
 
         btnClear.setText("Clear");
         btnClear.addActionListener(this::btnClearActionPerformed);
+
+        lblLiveClock.setText("jLabel9");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,6 +199,10 @@ public class AppointmentForm extends javax.swing.JFrame {
                                 .addComponent(btnClear)
                                 .addGap(86, 86, 86)))
                         .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblLiveClock)
+                .addGap(100, 100, 100))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,7 +259,9 @@ public class AppointmentForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave)
                     .addComponent(btnBack))
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addGap(80, 80, 80)
+                .addComponent(lblLiveClock)
+                .addGap(18, 18, 18))
         );
 
         pack();
@@ -516,6 +551,7 @@ java.util.Date selectedDate = filterDateChooser.getDate();
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblLiveClock;
     private javax.swing.JTable tblAppointments;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtApptNo;
