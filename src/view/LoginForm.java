@@ -33,6 +33,7 @@ public class LoginForm extends javax.swing.JFrame {
         btnLogin = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,6 +43,9 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel1.setText("Username");
 
         jLabel2.setText("Password");
+
+        btnExit.setText("Exit");
+        btnExit.addActionListener(this::btnExitActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -59,8 +63,13 @@ public class LoginForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(74, Short.MAX_VALUE)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(67, 67, 67))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnExit)
+                        .addGap(160, 160, 160))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -75,7 +84,9 @@ public class LoginForm extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(30, 30, 30)
                 .addComponent(btnLogin)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnExit)
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         pack();
@@ -123,6 +134,16 @@ public class LoginForm extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnLoginActionPerformed
 
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        int response = javax.swing.JOptionPane.showConfirmDialog(this, 
+            "Are you sure you want to exit Sunrise Dental System?", "Exit", 
+            javax.swing.JOptionPane.YES_NO_OPTION);
+            
+        if(response == javax.swing.JOptionPane.YES_OPTION){
+            System.exit(0);
+        }
+    }//GEN-LAST:event_btnExitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -149,6 +170,7 @@ public class LoginForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExit;
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
