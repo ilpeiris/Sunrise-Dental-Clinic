@@ -70,7 +70,7 @@ public class AppointmentForm extends javax.swing.JFrame {
 
         jLabel7.setText("Select Treatment:");
 
-        cmbTreatment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "General Cleaning", "Tooth Extraction", "Root Canal", "Teeth Whitening" }));
+        cmbTreatment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "General Cleaning - LKR 2500.00", "Tooth Extraction - LKR 4000.00", "Root Canal - LKR 15000.00", "Teeth Whitening - LKR 8500.00" }));
 
         tblAppointments.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -283,7 +283,7 @@ public class AppointmentForm extends javax.swing.JFrame {
     String address = txtAddress.getText().trim(); 
     //String dateStr = txtDate.getText().trim();
     String timeStr = cmbTime.getSelectedItem().toString();
-    String selectedTreatment = cmbTreatment.getSelectedItem().toString();
+    String selectedTreatment = cmbTreatment.getSelectedItem().toString().split(" - ")[0];
     String selectedDentist = cmbDentist.getSelectedItem().toString();
     
 

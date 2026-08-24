@@ -213,10 +213,10 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
-            <StringItem index="0" value="General Cleaning"/>
-            <StringItem index="1" value="Tooth Extraction"/>
-            <StringItem index="2" value="Root Canal"/>
-            <StringItem index="3" value="Teeth Whitening"/>
+            <StringItem index="0" value="General Cleaning - LKR 2500.00"/>
+            <StringItem index="1" value="Tooth Extraction - LKR 4000.00"/>
+            <StringItem index="2" value="Root Canal - LKR 15000.00"/>
+            <StringItem index="3" value="Teeth Whitening - LKR 8500.00"/>
           </StringArray>
         </Property>
       </Properties>
