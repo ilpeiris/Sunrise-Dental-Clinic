@@ -27,19 +27,27 @@ public class PrinterSpooler {
 
 
     
-    public void printReceipt(Bill newBill) {
+    public void printReceipt(model.Bill newBill) {
         String receiptContent = 
-            "=====================================\n" +
-            "       SUNRISE DENTAL CLINIC         \n" +
-            "=====================================\n" +
+            "========================================================================================================\n" +
+            "                                                                                                        \n" +
+            "                %%%%%%%%  %%%     %%%  %%%%     %%%  %%%%%%%%%   %%%   %%%%%%%  %%%%%%%%%               \n" +
+            "               %%%%  %%   %%%     %%%  %%%%%    %%%  %%%% %%%%%  %%%  %%%%  %%  %%%%                    \n" +
+            "               %%%%%%     %%%     %%%  %%%%%%%  %%%  %%%%  %%%%  %%%  %%%%%%    %%%%%%%%                \n" +
+            "                %%%%%%%%  %%%     %%%  %%% %%%% %%%  %%%%%%%%%   %%%   %%%%%%%% %%%%%%%%                \n" +
+            "                %   %%%%% %%%%    %%%  %%%  %%%%%%%  %%%%%%%%    %%%   %   %%%% %%%%                    \n" +
+            "              %%%%%%%%%%   %%%%%%%%%   %%%    %%%%%  %%%%  %%%%  %%%  %%%%%%%%% %%%%%%%%%               \n" +
+            "                %%%%%%      %%%%%%     %%%      %%%  %%%    %%%  %%%   %%%%%%   %%%%%%%%%               \n" +
+            "                                                                                                        \n" +
+            "========================================================================================================\n" +
             "Bill No: " + newBill.getBillNo() + "\n" +
             "Appointment No: " + newBill.getAppointmentNoStr() + "\n" +
             "Patient Name: " + newBill.getPatientName() + "\n" +
             "Contact: " + newBill.getContactNumber() + "\n" +
             "Attending Dentist: " + newBill.getDentistName() + "\n" +
             "Total Cost: LKR " + newBill.getTotalCost() + "\n" +
-            "=====================================\n" +
-            "Thank you! Please visit again.\n";
+            "========================================================================================================\n" +
+            "                               Thank you! Please visit again.                                           \n";
             
       
         System.out.println(receiptContent);
