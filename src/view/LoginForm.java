@@ -24,7 +24,7 @@ public class LoginForm extends javax.swing.JFrame {
         setTitle("Sunrise Dental Clinic - Login");
         setLocationRelativeTo(null); 
         setResizable(false);        
-        
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("logo.png")).getImage());
     }
 
     /**

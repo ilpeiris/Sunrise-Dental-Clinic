@@ -27,6 +27,8 @@ public class AppointmentForm extends javax.swing.JFrame {
         setLocationRelativeTo(null); 
         setResizable(false);   
         
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("logo.png")).getImage());
+        
         
         loadDentists();
         loadTable();
