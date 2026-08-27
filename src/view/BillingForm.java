@@ -32,6 +32,52 @@ public class BillingForm extends javax.swing.JFrame {
         initComponents();
         
         
+        
+        
+        
+// --- ASCII LOGO UI ---
+        String asciiArt = 
+        "                                                  :                                                  \n" +
+        "                                                  :                                                  \n" +
+        "                                           -     -:-     -                                           \n" +
+        "                                   -       --    ---    --       :                                   \n" +
+        "                                    :-      --   ---   --      --                                    \n" +
+        "                                     ---     --  ---  ---    ---                                     \n" +
+        "                                      ----  :::::::::::::  ---                                       \n" +
+        "                               ---      ---------------------      ---                               \n" +
+        "                                  ---- -----*#+-------=++----- ----                                  \n" +
+        "                                    - ---###=--*##++++-:-+++--- -                                    \n" +
+        "                          ------     ---##:.............:.:++---     ------                          \n" +
+        "                               --------=#+............:+*=.=*---------                               \n" +
+        "                                    ====#*..............:..+*===-                                    \n" +
+        "                                    ====##-...............-*+====                                    \n" +
+        "                           -------= ==+++*#:.............:**+++== --------                           \n" +
+        "                                 +++++++++*#.............**+++++++++                                 \n" +
+        "                             +++++++++++*+*#-...:###:...-**+++++++++++++                             \n" +
+        "                          *++*** ############...####*...**########## ****+*                          \n" +
+        "                  ********** ################-.=#   *=.:**############## **********                  \n" +
+        "                     ###########          ####+##   *+=**##          ###########                     \n" +
+        "                                              #       *                                              \n" +
+        "                %%%%%%   %%%%     %%% %%%%     %%%  %%%%%%%%    %%%   %%%%%%   %%%%%%%%              \n" +
+        "               %%%%%%%%  %%%%    %%%% %%%%%    %%%  %%%%%%%%%% %%%%  %%%%%%%%  %%%%%%%%              \n" +
+        "              %%%%%      %%%%    %%%% %%%%%%   %%%  %%%   %%%% %%%% %%%%%      %%%                   \n" +
+        "                %%%%%%%  %%%%    %%%% %%%%%%%% %%%  %%%%%%%%%  %%%%  %%%%%%%%  %%%%%%%               \n" +
+        "                   %%%%% %%%%    %%%% %%%% %%%%%%%  %%%%%%%%   %%%%      %%%%% %%%                   \n" +
+        "              %%%%%%%%%%  %%%%%%%%%%  %%%%   %%%%%  %%%  %%%%  %%%% %%%%%%%%%  %%%%%%%%              \n" +
+        "               %%%%%%%     %%%%%%%    %%%%    %%%%  %%%   %%%% %%%%  %%%%%%%   %%%%%%%%              \n" +
+        "                                                                                                     \n" +
+        "              *********  **** **  ****  *  **  **     * *  *  ** **** ** * *  *********              \n" +
+        "                         ***  *** * **  * **** ***    ***  **  * **** ** ***                         \n" +
+        "                                                                                                     \n";
+        
+        txtAsciiLogo.setText(asciiArt);
+        txtAsciiLogo.setFont(new java.awt.Font("Monospaced", java.awt.Font.BOLD, 5));
+        
+        
+        
+        
+        
+        
         // --- Global Window Settings ---
         //// Centers & Disables resizing the window on the screen
         setTitle("Sunrise Dental Clinic - Billing & Receipts");
@@ -66,6 +112,9 @@ public class BillingForm extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblPending = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtAsciiLogo = new javax.swing.JTextArea();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,7 +124,7 @@ public class BillingForm extends javax.swing.JFrame {
         btnBack.setText("Back to Dashboard");
         btnBack.addActionListener(this::btnBackActionPerformed);
 
-        jLabel1.setText("Appointment No");
+        jLabel1.setText("Appointment No:");
 
         jLabel2.setText("Bill No:");
 
@@ -107,60 +156,82 @@ public class BillingForm extends javax.swing.JFrame {
 
         jLabel3.setText("Pending Payments (Today)");
 
+        txtAsciiLogo.setEditable(false);
+        txtAsciiLogo.setColumns(20);
+        txtAsciiLogo.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
+        txtAsciiLogo.setRows(5);
+        txtAsciiLogo.setOpaque(false);
+        jScrollPane3.setViewportView(txtAsciiLogo);
+
+        jLabel4.setText("Paid Payments");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 20, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(38, 38, 38))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(95, 95, 95))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)))
+                        .addComponent(btnGenerate, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(206, 206, 206))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(98, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtBillNo, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtApptNo, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addComponent(btnGenerate)))
-                .addGap(261, 261, 261))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(176, 176, 176)
-                .addComponent(btnBack)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(236, 236, 236))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtApptNo, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtBillNo, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(173, 173, 173))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(220, 220, 220))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(106, 106, 106))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(293, 293, 293))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(153, 153, 153))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtApptNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtBillNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addComponent(btnGenerate)
-                .addGap(28, 28, 28)
+                .addGap(12, 12, 12)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBack)
-                .addGap(28, 28, 28)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(txtBillNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(txtApptNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnGenerate, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83))
+                .addGap(27, 27, 27)
+                .addComponent(btnBack)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
@@ -303,11 +374,14 @@ public class BillingForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tblBills;
     private javax.swing.JTable tblPending;
     private javax.swing.JTextField txtApptNo;
+    private javax.swing.JTextArea txtAsciiLogo;
     private javax.swing.JTextField txtBillNo;
     // End of variables declaration//GEN-END:variables
 }
