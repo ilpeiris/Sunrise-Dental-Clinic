@@ -17,6 +17,14 @@ public class DashboardForm extends javax.swing.JFrame {
      */
     public DashboardForm() {
         initComponents();
+        
+        // --- Global Window Settings ---
+        //// Centers & Disables resizing the window on the screen
+        setTitle("Sunrise Dental Clinic - Dashboard");
+        setLocationRelativeTo(null); 
+        setResizable(false);    
+        
+        
         loadDashboardData();
         
     // Multithreading - live clock using thread and runnable

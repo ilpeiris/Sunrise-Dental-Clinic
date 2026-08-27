@@ -17,6 +17,15 @@ public class HelpForm extends javax.swing.JFrame {
      */
     public HelpForm() {
         initComponents();
+        
+        
+        // --- Global Window Settings ---
+        //// Centers & Disables resizing the window on the screen
+        setTitle("Sunrise Dental Clinic - Help & Support");
+        setLocationRelativeTo(null); 
+        setResizable(false);   
+        
+        
     }
 
     /**

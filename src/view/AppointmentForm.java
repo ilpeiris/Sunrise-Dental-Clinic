@@ -17,11 +17,20 @@ public class AppointmentForm extends javax.swing.JFrame {
      */
     public AppointmentForm() {
         initComponents();
+        
+    
+
+        
+        // --- Global Window Settings ---
+        //// Centers & Disables resizing the window on the screen
+        setTitle("Sunrise Dental Clinic - Appointment Management");
+        setLocationRelativeTo(null); 
+        setResizable(false);   
+        
+        
         loadDentists();
         loadTable();
         generateNextApptNo();
-    
-
     
     // Multithreading - live clock using thread and runnable
         Thread clockThread = new Thread(new Runnable() {
