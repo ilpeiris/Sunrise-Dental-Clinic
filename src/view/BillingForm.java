@@ -25,7 +25,7 @@ public class BillingForm extends javax.swing.JFrame {
         setLocationRelativeTo(null); 
         setResizable(false);   
         
-        setIconImage(new javax.swing.ImageIcon(getClass().getResource("logo.png")).getImage());
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/view/images/logo.png")).getImage());
         
         
         generateNextBillNo();

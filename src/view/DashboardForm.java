@@ -23,7 +23,7 @@ public class DashboardForm extends javax.swing.JFrame {
         setTitle("Sunrise Dental Clinic - Dashboard");
         setLocationRelativeTo(null); 
         setResizable(false);    
-        setIconImage(new javax.swing.ImageIcon(getClass().getResource("logo.png")).getImage());
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/view/images/logo.png")).getImage());
         
         loadDashboardData();
         
