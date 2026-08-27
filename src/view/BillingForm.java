@@ -16,6 +16,19 @@ public class BillingForm extends javax.swing.JFrame {
      * Creates new form BillingForm
      */
     public BillingForm() {
+        
+        // BG
+        setContentPane(new javax.swing.JPanel() {
+           
+            java.awt.Image bgImage = new javax.swing.ImageIcon(getClass().getResource("/view/images/wbg.jpg")).getImage();
+            
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(bgImage, 0, 0, getWidth(), getHeight(), this);
+            }
+        });
+        
         initComponents();
         
         
