@@ -23,36 +23,41 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="48" max="32767" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="477" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" attributes="0">
+              <EmptySpace pref="138" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="btnBack" min="-2" pref="220" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="372" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="237" max="-2" attributes="0"/>
-                      <Component id="btnBack" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="373" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jScrollPane1" min="-2" pref="695" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="361" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="92" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="489" max="-2" attributes="0"/>
+              <EmptySpace pref="73" max="32767" attributes="0"/>
               <Component id="btnBack" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -70,14 +75,17 @@
             <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="1. To Book an Appointment: Go to Dashboard -&gt; Manage Appointments. Enter patient details and click Save.&#xa;&#xa;2. To Generate a Bill: Go to Dashboard -&gt; Billing. Enter the Appointment No. and click Generate. A text file receipt will be created automatically!"/>
+            <Property name="text" type="java.lang.String" value="&#xa;SYSTEM DASHBOARD&#xa;===================================================================================&#xa;Manage Appointments: Opens the registration and patient records.&#xa;Billing &amp; Receipts: Opens the payment and invoicing screen.&#xa;Exit: Safely logs out of the session and returns to login.&#xa;&#xa;MANAGING APPOINTMENTS&#xa;====================================================================================&#xa;Registering: Fill in all fields (Name, Contact, Address, Date, Time). Select the Dentist and Treatment from the dropdowns.&#xa;Validation: Contact numbers must be exactly 10 digits. Names must contain only letters.&#xa;Saving: Click &apos;Save&apos; to book. The system will prevent double-booking and trigger an SMS confirmation alert in the console.&#xa;Searching &amp; Filtering: Use &apos;Search by Name&apos; or &apos;Filter by Date&apos; to locate existing records. Click &apos;Clear&apos; to reset the form.&#xa;&#xa;BILLING &amp; RECEIPTS&#xa;====================================================================================&#xa;Generating a Bill: Enter a valid &apos;Appointment No&apos; and &apos;Bill No&apos;, then click &apos;Generate &amp; Print Bill&apos;.&#xa;Processing: The system automatically calculates total consultation and treatment costs.&#xa;Physical Receipts: A digital receipt (.txt file) will be generated and saved locally for the patient.&#xa;Tracking: Use the tables to view &apos;Pending Payments (Today)&apos; and completed &apos;Paid Payments&apos;.&#xa;&#xa;SYSTEM FEATURES&#xa;====================================================================================&#xa;Live Clock: A real-time clock is displayed to ensure accurate appointment logging.&#xa;Security: Always use the &apos;Exit&apos; button to securely end your tracked user session.&#xa;&#xa;====================================================================================&#xa;&#xa;Need technical support? Please contact the ilpeiris"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Welcome to Sunrise Dental!"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="3"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Sunrise Dental - User Guide"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnBack">
@@ -87,6 +95,13 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/view/images/logoT1.png"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
