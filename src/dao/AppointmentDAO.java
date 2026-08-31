@@ -139,9 +139,12 @@ public class AppointmentDAO {
         try {
             java.sql.Connection con = db.DBConnection.getInstance();
             
-            String sql = "SELECT a.appointment_no, p.name, a.appt_time " +
+            String sql = "SELECT a.appointment_no, p.name, a.appt_time, " +
+                         "(d.consultation_fee + t.treatment_cost) AS expected_total " +
                          "FROM appointment a " +
                          "JOIN patient p ON a.patient_id = p.id " +
+                         "JOIN dentist d ON a.dentist_id = d.id " +
+                         "JOIN treatment t ON a.treatment_id = t.id " +
                          "WHERE a.appt_date = CURDATE() " +
                          "AND a.id NOT IN (SELECT appointment_id FROM bill)";
             java.sql.PreparedStatement pst = con.prepareStatement(sql);
