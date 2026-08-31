@@ -104,7 +104,19 @@ public class DashboardForm extends javax.swing.JFrame {
         btnAppointments = new javax.swing.JButton();
         btnBilling = new javax.swing.JButton();
         lblTotalAppointments = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel() {
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                super.paintComponent(g);
+                java.awt.Graphics2D g2d = (java.awt.Graphics2D) g;
+                // Set your two gradient colors here:
+                java.awt.Color color1 = new java.awt.Color(0, 102, 204); // Dark Blue
+                java.awt.Color color2 = new java.awt.Color(204, 255, 255); // Light Cyan
+                java.awt.GradientPaint gp = new java.awt.GradientPaint(0, 0, color1, 0, getHeight(), color2);
+                g2d.setPaint(gp);
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };
         lblWelcome = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -128,11 +140,11 @@ public class DashboardForm extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(204, 255, 255));
 
         lblWelcome.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        lblWelcome.setForeground(new java.awt.Color(0, 0, 0));
+        lblWelcome.setForeground(new java.awt.Color(255, 255, 255));
         lblWelcome.setText("Welcome");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/logoUI.png"))); // NOI18N
         jLabel1.setText("SUNRISE DENTAL CLINIC");
 

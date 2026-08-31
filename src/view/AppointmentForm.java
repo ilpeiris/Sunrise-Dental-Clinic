@@ -107,7 +107,19 @@ public class AppointmentForm extends javax.swing.JFrame {
         filterDateChooser = new com.toedter.calendar.JDateChooser();
         btnFilterDate = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel() {
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                super.paintComponent(g);
+                java.awt.Graphics2D g2d = (java.awt.Graphics2D) g;
+                // Set your two gradient colors here:
+                java.awt.Color color1 = new java.awt.Color(0, 102, 204); // Dark Blue
+                java.awt.Color color2 = new java.awt.Color(204, 255, 255); // Light Cyan
+                java.awt.GradientPaint gp = new java.awt.GradientPaint(0, 0, color1, 0, getHeight(), color2);
+                g2d.setPaint(gp);
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };
         jLabel9 = new javax.swing.JLabel();
         lblWelcome = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -172,7 +184,9 @@ public class AppointmentForm extends javax.swing.JFrame {
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/logoT1.png"))); // NOI18N
 
+        lblWelcome.setBackground(new java.awt.Color(255, 255, 255));
         lblWelcome.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        lblWelcome.setForeground(new java.awt.Color(255, 255, 255));
         lblWelcome.setText("jLabel14");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -248,9 +262,9 @@ public class AppointmentForm extends javax.swing.JFrame {
                 .addGap(16, 16, 16))
         );
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/bg_2.gif"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/bg_1.gif"))); // NOI18N
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/bg_2.gif"))); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/bg_1.gif"))); // NOI18N
         jLabel11.setText("jLabel11");
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/tooth-teeth.gif"))); // NOI18N
@@ -367,9 +381,8 @@ public class AppointmentForm extends javax.swing.JFrame {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(btnClear)
                                                 .addGap(7, 7, 7)
-                                                .addComponent(cmbTreatment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(cmbTreatment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))))
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
