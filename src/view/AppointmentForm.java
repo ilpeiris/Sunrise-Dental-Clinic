@@ -32,7 +32,7 @@ public class AppointmentForm extends javax.swing.JFrame {
         
         
         initComponents();
-        
+        loadSessionData();
     
 
         
@@ -109,6 +109,7 @@ public class AppointmentForm extends javax.swing.JFrame {
         btnClear = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
+        lblWelcome = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnBack = new javax.swing.JButton();
         lblLiveClock = new javax.swing.JLabel();
@@ -171,6 +172,9 @@ public class AppointmentForm extends javax.swing.JFrame {
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/logoT1.png"))); // NOI18N
 
+        lblWelcome.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        lblWelcome.setText("jLabel14");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -178,13 +182,19 @@ public class AppointmentForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(506, 506, 506)
                 .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblWelcome)
+                .addGap(70, 70, 70))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel9)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(lblWelcome)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -192,6 +202,7 @@ public class AppointmentForm extends javax.swing.JFrame {
         btnBack.setText("Back");
         btnBack.addActionListener(this::btnBackActionPerformed);
 
+        lblLiveClock.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         lblLiveClock.setText("jLabel9");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -620,6 +631,22 @@ java.util.Date selectedDate = filterDateChooser.getDate();
         txtPatientName.requestFocus();
     }//GEN-LAST:event_btnClearActionPerformed
 
+    
+    
+    
+    private void loadSessionData() {
+        String currentUser = pattern.UserSession.getInstance().getLoggedInUser();
+        if (currentUser != null) {
+            lblWelcome.setText("Staff: " + currentUser);
+        } else {
+            lblWelcome.setText("User: Guest");
+        }
+    }
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -673,6 +700,7 @@ java.util.Date selectedDate = filterDateChooser.getDate();
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblLiveClock;
+    private javax.swing.JLabel lblWelcome;
     private javax.swing.JTable tblAppointments;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtApptNo;

@@ -35,7 +35,7 @@ public class BillingForm extends javax.swing.JFrame {
         
         
         initComponents();
-        
+        loadSessionData();
         
         txtApptNo.setText("A");
         
@@ -120,6 +120,7 @@ public class BillingForm extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         txtAsciiLogo = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
+        lblWelcome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -178,6 +179,9 @@ public class BillingForm extends javax.swing.JFrame {
 
         jLabel4.setText("Paid Payments");
 
+        lblWelcome.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        lblWelcome.setText("jLabel5");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -191,7 +195,9 @@ public class BillingForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addGap(236, 236, 236))
+                        .addGap(171, 171, 171)
+                        .addComponent(lblWelcome)
+                        .addGap(28, 28, 28))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -222,7 +228,9 @@ public class BillingForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(lblWelcome))
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
@@ -352,6 +360,16 @@ public class BillingForm extends javax.swing.JFrame {
         txtBillNo.setEditable(false); 
     }
     
+        
+    private void loadSessionData() {
+        String currentUser = pattern.UserSession.getInstance().getLoggedInUser();
+        if (currentUser != null) {
+            lblWelcome.setText("Staff: " + currentUser);
+        } else {
+            lblWelcome.setText("User: Guest");
+        }
+    }
+    
     
     
     
@@ -391,6 +409,7 @@ public class BillingForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblWelcome;
     private javax.swing.JTable tblBills;
     private javax.swing.JTable tblPending;
     private javax.swing.JTextField txtApptNo;
