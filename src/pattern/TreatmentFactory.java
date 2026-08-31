@@ -16,7 +16,6 @@ public class TreatmentFactory {
     public static Treatment getTreatment(String type) {
         Treatment t = new Treatment();
         
-        // Simulating the creation of specific treatment families 
         if (type.equalsIgnoreCase("General Cleaning")) {
             t.setTreatmentId("TRT001");
             t.setTreatmentType("General Cleaning");
