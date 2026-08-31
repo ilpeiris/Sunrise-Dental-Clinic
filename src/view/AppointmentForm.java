@@ -403,14 +403,14 @@ public class AppointmentForm extends javax.swing.JFrame {
     
     private void loadDentists() {
         cmbDentist.removeAllItems(); 
-        String sql = "SELECT id, name FROM dentist";
+        String sql = "SELECT id, name, consultation_fee FROM dentist";
         try (java.sql.Connection con = db.DBConnection.getInstance();
              java.sql.Statement st = con.createStatement();
              java.sql.ResultSet rs = st.executeQuery(sql)) {
              
             while (rs.next()) {
                 
-                cmbDentist.addItem(rs.getInt("id") + " - " + rs.getString("name"));
+                cmbDentist.addItem(rs.getInt("id") + " - " + rs.getString("name") + " (Fee: LKR " + rs.getDouble("consultation_fee") + ")");
             }
         } catch (Exception e) {
             System.out.println("Load Dentist Error: " + e.getMessage());
