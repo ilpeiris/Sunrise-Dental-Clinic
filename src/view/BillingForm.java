@@ -29,10 +29,15 @@ public class BillingForm extends javax.swing.JFrame {
             }
         });
         
+        
+        
+        
+        
+        
         initComponents();
         
         
-        
+        txtApptNo.setText("A");
         
         
 // --- ASCII LOGO UI ---
@@ -269,7 +274,7 @@ public class BillingForm extends javax.swing.JFrame {
             "Bill Generated & Printed Successfully!\nPlease check the system console for the receipt.");
         txtApptNo.setText("");
         //txtBillNo.setText("");
-        
+        txtApptNo.setText("A");
         generateNextBillNo();
         loadBillTable();
         loadPendingTable();
