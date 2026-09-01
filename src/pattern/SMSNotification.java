@@ -4,6 +4,11 @@
  */
 package pattern;
 
+
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author ilpeiris
@@ -11,15 +16,25 @@ package pattern;
 public class SMSNotification implements Notification {
     @Override
     public void notifyUser(String recipient, String message) {
-        System.out.println("=========================================");
+
+        String timeStamp = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a").format(new Date());
+
+        System.out.println("\n=======================================================");
+        System.out.println("  >>> OUTGOING SMS NOTIFICATION TRIGGERED <<<  ");
+        System.out.println("=======================================================");
         System.out.println("  .----------------. ");
         System.out.println(" |  [ SMS ALERT ]   |");
         System.out.println(" |  ..............  |");
         System.out.println("  '-------. .------' ");
         System.out.println("          |/         ");
         System.out.println("=========================================");
-        System.out.println("To: " + recipient);
-        System.out.println("Message: " + message);
-        System.out.println("=========================================\n");
+        System.out.println("  Sender ID     : SUNRISE-DENTAL");
+        System.out.println("  Timestamp     : " + timeStamp);
+        System.out.println("  Recipient     : " + recipient);
+        System.out.println("  Network Status: [DELIVERED - SUCCESS]");
+        System.out.println("-------------------------------------------------------");
+        System.out.println("  Message: ");
+        System.out.println("  \"" + message + "\"");
+        System.out.println("=======================================================\n");
     }
 }
