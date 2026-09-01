@@ -20,7 +20,7 @@ public class BillingForm extends javax.swing.JFrame {
         // BG
         setContentPane(new javax.swing.JPanel() {
            
-            java.awt.Image bgImage = new javax.swing.ImageIcon(getClass().getResource("/view/images/wbg.jpg")).getImage();
+            java.awt.Image bgImage = new javax.swing.ImageIcon(getClass().getResource("/view/images/bg7.jpg")).getImage();
             
             @Override
             protected void paintComponent(java.awt.Graphics g) {
@@ -130,8 +130,10 @@ public class BillingForm extends javax.swing.JFrame {
         btnBack.setText("Back to Dashboard");
         btnBack.addActionListener(this::btnBackActionPerformed);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Appointment No:");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Bill No:");
 
         tblBills.setModel(new javax.swing.table.DefaultTableModel(
@@ -168,6 +170,7 @@ public class BillingForm extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tblPending);
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Pending Payments (Today)");
 
         txtAsciiLogo.setEditable(false);
@@ -177,6 +180,7 @@ public class BillingForm extends javax.swing.JFrame {
         txtAsciiLogo.setOpaque(false);
         jScrollPane3.setViewportView(txtAsciiLogo);
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Paid Payments");
 
         lblWelcome.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
@@ -236,13 +240,13 @@ public class BillingForm extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(txtBillNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtBillNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(txtApptNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtApptNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addComponent(btnGenerate, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)

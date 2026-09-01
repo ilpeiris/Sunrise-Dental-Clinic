@@ -22,7 +22,7 @@ public class LoginForm extends javax.swing.JFrame {
         // BG
         setContentPane(new javax.swing.JPanel() {
            
-            java.awt.Image bgImage = new javax.swing.ImageIcon(getClass().getResource("/view/images/wbg.jpg")).getImage();
+            java.awt.Image bgImage = new javax.swing.ImageIcon(getClass().getResource("/view/images/bg7.jpg")).getImage();
             
             @Override
             protected void paintComponent(java.awt.Graphics g) {
@@ -67,10 +67,12 @@ public class LoginForm extends javax.swing.JFrame {
         btnLogin.setText("Login");
         btnLogin.addActionListener(this::btnLoginActionPerformed);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Username");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Password");
 
         btnExit.setText("Exit");

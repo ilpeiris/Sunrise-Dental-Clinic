@@ -21,7 +21,7 @@ public class AppointmentForm extends javax.swing.JFrame {
         // BG
         setContentPane(new javax.swing.JPanel() {
            
-            java.awt.Image bgImage = new javax.swing.ImageIcon(getClass().getResource("/view/images/wbg.jpg")).getImage();
+            java.awt.Image bgImage = new javax.swing.ImageIcon(getClass().getResource("/view/images/bg7.jpg")).getImage();
             
             @Override
             protected void paintComponent(java.awt.Graphics g) {
@@ -178,18 +178,25 @@ public class AppointmentForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Appointment No:");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Patient Name:");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Contact Number:");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Date (YYYY-MM-DD):");
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Time:");
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Select Dentist:");
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Select Treatment:");
 
         cmbTreatment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "General Cleaning - LKR 2500.00", "Tooth Extraction - LKR 4000.00", "Root Canal - LKR 15000.00", "Teeth Whitening - LKR 8500.00" }));
@@ -210,6 +217,7 @@ public class AppointmentForm extends javax.swing.JFrame {
         btnSave.setText("Book");
         btnSave.addActionListener(this::btnSaveActionPerformed);
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("Address");
 
         txtAddress.addActionListener(this::txtAddressActionPerformed);

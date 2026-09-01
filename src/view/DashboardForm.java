@@ -20,7 +20,7 @@ public class DashboardForm extends javax.swing.JFrame {
         // BG
         setContentPane(new javax.swing.JPanel() {
            
-            java.awt.Image bgImage = new javax.swing.ImageIcon(getClass().getResource("/view/images/wbg.jpg")).getImage();
+            java.awt.Image bgImage = new javax.swing.ImageIcon(getClass().getResource("/view/images/bg7.jpg")).getImage();
             
             @Override
             protected void paintComponent(java.awt.Graphics g) {
@@ -160,6 +160,7 @@ public class DashboardForm extends javax.swing.JFrame {
         btnBilling.setText("Billing & Receipts");
         btnBilling.addActionListener(this::btnBillingActionPerformed);
 
+        lblTotalAppointments.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblTotalAppointments.setText("Appointments");
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
