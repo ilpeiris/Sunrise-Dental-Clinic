@@ -579,18 +579,16 @@ public class AppointmentForm extends javax.swing.JFrame {
     if (success) {
         javax.swing.JOptionPane.showMessageDialog(this, "Appointment Registered Successfully!");
         
-    //  Simulating SMS Alert
-        System.out.println("=========================================");
-        System.out.println("  .----------------. ");
-        System.out.println(" |  [ SMS ALERT ]   |");
-        System.out.println(" |  ..............  |");
-        System.out.println("  '-------. .------' ");
-        System.out.println("          |/         ");
-        System.out.println("=========================================");
-        System.out.println("To: " + contact);
-        System.out.println("Message: Hello " + patientName + ", your appointment (" + apptNo + ") is confirmed for " + dateStr + " at " + timeStr + ".");
-        System.out.println("=========================================\n");
+        
+        // Factory Pattern applied fr SMS Notifi
+        pattern.Notification smsAlert = pattern.NotificationFactory.getNotification("SMS");
+        if (smsAlert != null) {
+            String msg = "Hello " + patientName + ", your appointment (" + apptNo + 
+                         ") is confirmed for " + dateStr + " at " + timeStr + ".";
+            smsAlert.notifyUser(contact, msg);
+        }
 
+        
         // Clear ALL fields to prevent accidental double-booking
         txtApptNo.setText(""); 
         txtPatientName.setText(""); 
