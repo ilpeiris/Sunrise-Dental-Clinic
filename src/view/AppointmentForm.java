@@ -112,20 +112,65 @@ public class AppointmentForm extends javax.swing.JFrame {
             protected void paintComponent(java.awt.Graphics g) {
                 super.paintComponent(g);
                 java.awt.Graphics2D g2d = (java.awt.Graphics2D) g;
-                // Set your two gradient colors here:
-                java.awt.Color color1 = new java.awt.Color(0, 102, 204); // Dark Blue
-                java.awt.Color color2 = new java.awt.Color(204, 255, 255); // Light Cyan
-                java.awt.GradientPaint gp = new java.awt.GradientPaint(0, 0, color1, 0, getHeight(), color2);
+                g2d.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING,
+                    java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Neon blue gradient
+                java.awt.Color color1 = new java.awt.Color(0, 30, 60);    // Dark Navy Blue
+                java.awt.Color color2 = new java.awt.Color(0, 153, 255);  // Bright Neon Blue
+
+                java.awt.GradientPaint gp = new java.awt.GradientPaint(
+                    0, 0, color1,
+                    getWidth(), getHeight(), color2
+                );
                 g2d.setPaint(gp);
                 g2d.fillRect(0, 0, getWidth(), getHeight());
             }
         };
         jLabel9 = new javax.swing.JLabel();
         lblWelcome = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel() {
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                super.paintComponent(g);
+                java.awt.Graphics2D g2d = (java.awt.Graphics2D) g;
+                g2d.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING,
+                    java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Neon blue gradient
+                java.awt.Color color1 = new java.awt.Color(0, 30, 60);    // Dark Navy Blue
+                java.awt.Color color2 = new java.awt.Color(0, 153, 255);  // Bright Neon Blue
+
+                java.awt.GradientPaint gp = new java.awt.GradientPaint(
+                    0, 0, color1,
+                    getWidth(), getHeight(), color2
+                );
+                g2d.setPaint(gp);
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };
         btnBack = new javax.swing.JButton();
         lblLiveClock = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel() {
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                super.paintComponent(g);
+                java.awt.Graphics2D g2d = (java.awt.Graphics2D) g;
+                g2d.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING,
+                    java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Neon blue gradient
+                java.awt.Color color1 = new java.awt.Color(0, 30, 60);    // Dark Navy Blue
+                java.awt.Color color2 = new java.awt.Color(0, 153, 255);  // Bright Neon Blue
+
+                java.awt.GradientPaint gp = new java.awt.GradientPaint(
+                    0, 0, color1,
+                    getWidth(), getHeight(), color2
+                );
+                g2d.setPaint(gp);
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };
         jLabel12 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -211,12 +256,14 @@ public class AppointmentForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
         btnBack.setText("Back");
         btnBack.addActionListener(this::btnBackActionPerformed);
 
+        lblLiveClock.setBackground(new java.awt.Color(255, 255, 255));
         lblLiveClock.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        lblLiveClock.setForeground(new java.awt.Color(255, 255, 255));
         lblLiveClock.setText("jLabel9");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -240,9 +287,11 @@ public class AppointmentForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBackground(new java.awt.Color(153, 153, 153));
 
+        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Registered Appointments");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -334,9 +383,7 @@ public class AppointmentForm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(57, 57, 57)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -381,7 +428,8 @@ public class AppointmentForm extends javax.swing.JFrame {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(btnClear)
                                                 .addGap(7, 7, 7)
-                                                .addComponent(cmbTreatment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))))
+                                                .addComponent(cmbTreatment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

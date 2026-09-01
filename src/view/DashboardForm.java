@@ -109,10 +109,17 @@ public class DashboardForm extends javax.swing.JFrame {
             protected void paintComponent(java.awt.Graphics g) {
                 super.paintComponent(g);
                 java.awt.Graphics2D g2d = (java.awt.Graphics2D) g;
-                // Set your two gradient colors here:
-                java.awt.Color color1 = new java.awt.Color(0, 102, 204); // Dark Blue
-                java.awt.Color color2 = new java.awt.Color(204, 255, 255); // Light Cyan
-                java.awt.GradientPaint gp = new java.awt.GradientPaint(0, 0, color1, 0, getHeight(), color2);
+                g2d.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING,
+                    java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Neon blue gradient
+                java.awt.Color color1 = new java.awt.Color(0, 30, 60);    // Dark Navy Blue
+                java.awt.Color color2 = new java.awt.Color(0, 153, 255);  // Bright Neon Blue
+
+                java.awt.GradientPaint gp = new java.awt.GradientPaint(
+                    0, 0, color1,
+                    getWidth(), getHeight(), color2
+                );
                 g2d.setPaint(gp);
                 g2d.fillRect(0, 0, getWidth(), getHeight());
             }
@@ -120,7 +127,26 @@ public class DashboardForm extends javax.swing.JFrame {
         lblWelcome = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel() {
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                super.paintComponent(g);
+                java.awt.Graphics2D g2d = (java.awt.Graphics2D) g;
+                g2d.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING,
+                    java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // Neon blue gradient
+                java.awt.Color color1 = new java.awt.Color(0, 30, 60);    // Dark Navy Blue
+                java.awt.Color color2 = new java.awt.Color(0, 153, 255);  // Bright Neon Blue
+
+                java.awt.GradientPaint gp = new java.awt.GradientPaint(
+                    0, 0, color1,
+                    getWidth(), getHeight(), color2
+                );
+                g2d.setPaint(gp);
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };
         btnHelp = new javax.swing.JButton();
         lblLiveClock = new javax.swing.JLabel();
         btnLogout = new javax.swing.JButton();
@@ -136,7 +162,7 @@ public class DashboardForm extends javax.swing.JFrame {
 
         lblTotalAppointments.setText("Appointments");
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setForeground(new java.awt.Color(204, 255, 255));
 
         lblWelcome.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
@@ -172,14 +198,15 @@ public class DashboardForm extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/bg_1.gif"))); // NOI18N
         jLabel2.setIconTextGap(0);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
         btnHelp.setText("Help");
         btnHelp.addActionListener(this::btnHelpActionPerformed);
 
+        lblLiveClock.setBackground(new java.awt.Color(255, 255, 255));
         lblLiveClock.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        lblLiveClock.setForeground(new java.awt.Color(0, 0, 0));
+        lblLiveClock.setForeground(new java.awt.Color(255, 255, 255));
         lblLiveClock.setText("Time");
 
         btnLogout.setText("Exit");
