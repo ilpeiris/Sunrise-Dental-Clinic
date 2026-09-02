@@ -39,21 +39,19 @@
                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="txtDateChooser" pref="222" max="32767" attributes="0"/>
-                      <Component id="txtAddress" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtContact" max="32767" attributes="0"/>
-                      <Component id="cmbTime" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="txtPatientName" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtApptNo" alignment="0" max="32767" attributes="0"/>
-                      <Component id="cmbDentist" alignment="0" max="32767" attributes="0"/>
-                      <Component id="cmbTreatment" alignment="0" pref="222" max="32767" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="txtEmail" max="32767" attributes="0"/>
+                  <Component id="txtDateChooser" alignment="1" pref="222" max="32767" attributes="0"/>
+                  <Component id="txtAddress" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtContact" alignment="1" max="32767" attributes="0"/>
+                  <Component id="cmbTime" alignment="1" max="32767" attributes="0"/>
+                  <Component id="txtPatientName" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtApptNo" alignment="0" max="32767" attributes="0"/>
+                  <Component id="cmbDentist" alignment="0" max="32767" attributes="0"/>
+                  <Component id="cmbTreatment" alignment="0" pref="222" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -96,7 +94,10 @@
                   <Group type="102" attributes="0">
                       <Component id="jPanel1" min="-2" pref="145" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel11" alignment="0" min="-2" pref="395" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel11" min="-2" pref="395" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -157,9 +158,14 @@
                                       </Group>
                                   </Group>
                               </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -584,6 +590,16 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/view/images/tooth-teeth.gif"/>
         </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtEmail">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel14">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Email:"/>
       </Properties>
     </Component>
   </SubComponents>

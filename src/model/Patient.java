@@ -10,6 +10,7 @@ package model;
  */
 public class Patient extends Person{
     private String patientId;
+    private String email;
     
     public Patient() {
         super();
@@ -17,6 +18,9 @@ public class Patient extends Person{
     
     public String getPatientId() { return patientId; }
     public void setPatientId(String patientId) { this.patientId = patientId; }
+    
+    public String getEmail() { return email; } 
+    public void setEmail(String email) { this.email = email; } 
     
     @Override
     public String getRoleDescription() {

@@ -12,8 +12,9 @@ public class NotificationFactory {
     public static Notification getNotification(String type) {
         if (type.equalsIgnoreCase("SMS")) {
             return new SMSNotification();
-        } 
-        // extensible for EmailS
+        } else if (type.equalsIgnoreCase("EMAIL")) {
+            return new EmailNotification();
+        }    
         return null;
     }
 }

@@ -37,7 +37,7 @@ public class PatientDAO {
 
     // Adds a new patient and returns their newly generated Database ID
     public int addPatientAndGetId(Patient p) {
-        String sql = "INSERT INTO patient (patient_id, name, address, contact_number) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO patient (patient_id, name, address, contact_number, email) VALUES (?, ?, ?, ?, ?)";
         
         try (Connection con = DBConnection.getInstance();
              // Request MySQL to return the auto-generated keys
@@ -47,6 +47,7 @@ public class PatientDAO {
             pst.setString(2, p.getName());
             pst.setString(3, p.getAddress());
             pst.setString(4, p.getContactNumber());
+            pst.setString(5, p.getEmail());
             
             pst.executeUpdate();
             
