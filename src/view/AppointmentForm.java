@@ -590,7 +590,10 @@ public class AppointmentForm extends javax.swing.JFrame {
     boolean success = apptService.processRegistration(patient, appt);
 
     if (success) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Appointment Registered Successfully!");
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "Appointment Registered Successfully!\n" +
+            "A confirmation email has been sent to the patient.", 
+            "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
         
         
         // Factory Pattern applied fr SMS Notifi

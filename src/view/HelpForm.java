@@ -144,8 +144,8 @@ public class HelpForm extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(45, 45, 45)
-                        .addComponent(jLabel1)
-                        .addGap(47, 47, 47))))
+                        .addComponent(jLabel1)))
+                .addGap(6, 6, 6))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lblWelcome)
@@ -159,7 +159,7 @@ public class HelpForm extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("\nThe Dashboard is your central hub for managing the Sunrise Dental Clinic.\n\n     - Appointments: Click this to register new patients, book timeslots, and search existing records.\n     - Billing: Click here to process payments and generate physical .txt receipts.\n     - Live Analytics: The dashboard automatically calculates your daily workload (e.g., \"Total Appointments Today\") to help you manage \n       clinic flow.\n     - Live Clock: Use the real-time system clock at the top to ensure walk-in patients are logged accurately.");
+        jTextArea1.setText("\nThe Dashboard is your central hub for managing the Sunrise Dental Clinic.\n\n     - Appointments: Click this to register new patients, book timeslots, search existing records ,trigger automated HTML email confirmations.\n     - Billing: Click here to process payments and generate professional PDF invoices and email them directly to patients.\n     - Live Analytics: The dashboard automatically calculates your daily workload (e.g., \"Total Appointments Today\") to help you manage \n       clinic flow.\n     - Live Clock: Use the real-time system clock at the top to ensure walk-in patients are logged accurately.");
         jScrollPane1.setViewportView(jTextArea1);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -196,7 +196,7 @@ public class HelpForm extends javax.swing.JFrame {
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
-        jTextArea2.setText("Ensure all text fields are filled. Names must be letters only, and the contact number must be exactly 10 digits.\n\n\t- Select the preferred Dentist and Treatment type from the dropdown menus.\n\t- Choose a Date and type the Time (e.g., 10:30 AM).\n\t- Click Save.\n\nNote: The system will automatically block you if you try to double-book a dentist for the same time. Upon success, an automated \n           SMS is simulated.\n\nSearching Records: To find a patient, type their Appointment Number (e.g., A001) into the search bar and click Search.");
+        jTextArea2.setText("Ensure all text fields are filled. Names must be letters only, and the contact number must be exactly 10 digits.\n\n\t- Select the preferred Dentist and Treatment type from the dropdown menus.\n\t- Choose a Date and type the Time (e.g., 10:30 AM).\n\t- Click Book.\n\nNote: The system will automatically block you if you try to double-book a dentist for the same time. Upon success, an automated SMS is simulated in the console, \n           and a confirmation email is sent to the patient.\n\nSearching Records: To find a patient, type their Appointment Number (e.g., A001) into the search bar and click Search.");
         jScrollPane2.setViewportView(jTextArea2);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -232,7 +232,7 @@ public class HelpForm extends javax.swing.JFrame {
 
         jTextArea3.setColumns(20);
         jTextArea3.setRows(5);
-        jTextArea3.setText("# Check the \"Pending Payments\" table to see which patients still need to be billed today.\n\n# The Appointment Number box is pre-filled with an \"A\". Complete the number (e.g., A001) and type a unique Bill Number.\n\n# Click Generate & Print Bill.\n\n# The system will automatically calculate the total based on the Dentist's consultation fee and the Treatment cost.\n\n\n\n\nFinding Receipts: Once generated, a digital text receipt (.txt file) is automatically saved to the 'bills' folder on your computer for auditing\npurposes.");
+        jTextArea3.setText("# Check the \"Pending Payments\" table to see which patients still need to be billed today.\n\n# The Appointment Number box is pre-filled with an \"A\". Complete the number (e.g., A001) and type a unique Bill Number.\n\n# Click Generate & Print Bill.\n\n# The system will automatically calculate the total based on the Dentist's consultation fee and the Treatment cost.\n\n\n\nPDF & Email System: Once generated, a highly-formatted PDF invoice is saved locally. It is immediately emailed to the patient as a \nsecure attachment. You can review the physical PDF anytime by clicking the 'View Bill' button directly inside the Paid Payments table\n\nFinding Receipts: Once generated, a digital text receipt (.txt file) is automatically saved to the 'bills' folder on your computer for auditing\npurposes.");
         jScrollPane3.setViewportView(jTextArea3);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);

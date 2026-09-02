@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.8" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JDesktopPane" name="jDesktopPane1">
 
@@ -112,9 +112,9 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -226,7 +226,7 @@
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
-                    <Property name="text" type="java.lang.String" value="&#xa;The Dashboard is your central hub for managing the Sunrise Dental Clinic.&#xa;&#xa;     - Appointments: Click this to register new patients, book timeslots, and search existing records.&#xa;     - Billing: Click here to process payments and generate physical .txt receipts.&#xa;     - Live Analytics: The dashboard automatically calculates your daily workload (e.g., &quot;Total Appointments Today&quot;) to help you manage &#xa;       clinic flow.&#xa;     - Live Clock: Use the real-time system clock at the top to ensure walk-in patients are logged accurately."/>
+                    <Property name="text" type="java.lang.String" value="&#xa;The Dashboard is your central hub for managing the Sunrise Dental Clinic.&#xa;&#xa;     - Appointments: Click this to register new patients, book timeslots, search existing records ,trigger automated HTML email confirmations.&#xa;     - Billing: Click here to process payments and generate professional PDF invoices and email them directly to patients.&#xa;     - Live Analytics: The dashboard automatically calculates your daily workload (e.g., &quot;Total Appointments Today&quot;) to help you manage &#xa;       clinic flow.&#xa;     - Live Clock: Use the real-time system clock at the top to ensure walk-in patients are logged accurately."/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -304,7 +304,7 @@
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
-                    <Property name="text" type="java.lang.String" value="Ensure all text fields are filled. Names must be letters only, and the contact number must be exactly 10 digits.&#xa;&#xa;&#x9;- Select the preferred Dentist and Treatment type from the dropdown menus.&#xa;&#x9;- Choose a Date and type the Time (e.g., 10:30 AM).&#xa;&#x9;- Click Save.&#xa;&#xa;Note: The system will automatically block you if you try to double-book a dentist for the same time. Upon success, an automated &#xa;           SMS is simulated.&#xa;&#xa;Searching Records: To find a patient, type their Appointment Number (e.g., A001) into the search bar and click Search."/>
+                    <Property name="text" type="java.lang.String" value="Ensure all text fields are filled. Names must be letters only, and the contact number must be exactly 10 digits.&#xa;&#xa;&#x9;- Select the preferred Dentist and Treatment type from the dropdown menus.&#xa;&#x9;- Choose a Date and type the Time (e.g., 10:30 AM).&#xa;&#x9;- Click Book.&#xa;&#xa;Note: The system will automatically block you if you try to double-book a dentist for the same time. Upon success, an automated SMS is simulated in the console, &#xa;           and a confirmation email is sent to the patient.&#xa;&#xa;Searching Records: To find a patient, type their Appointment Number (e.g., A001) into the search bar and click Search."/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -373,7 +373,7 @@
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
-                    <Property name="text" type="java.lang.String" value="# Check the &quot;Pending Payments&quot; table to see which patients still need to be billed today.&#xa;&#xa;# The Appointment Number box is pre-filled with an &quot;A&quot;. Complete the number (e.g., A001) and type a unique Bill Number.&#xa;&#xa;# Click Generate &amp; Print Bill.&#xa;&#xa;# The system will automatically calculate the total based on the Dentist&apos;s consultation fee and the Treatment cost.&#xa;&#xa;&#xa;&#xa;&#xa;Finding Receipts: Once generated, a digital text receipt (.txt file) is automatically saved to the &apos;bills&apos; folder on your computer for auditing&#xa;purposes."/>
+                    <Property name="text" type="java.lang.String" value="# Check the &quot;Pending Payments&quot; table to see which patients still need to be billed today.&#xa;&#xa;# The Appointment Number box is pre-filled with an &quot;A&quot;. Complete the number (e.g., A001) and type a unique Bill Number.&#xa;&#xa;# Click Generate &amp; Print Bill.&#xa;&#xa;# The system will automatically calculate the total based on the Dentist&apos;s consultation fee and the Treatment cost.&#xa;&#xa;&#xa;&#xa;PDF &amp; Email System: Once generated, a highly-formatted PDF invoice is saved locally. It is immediately emailed to the patient as a &#xa;secure attachment. You can review the physical PDF anytime by clicking the &apos;View Bill&apos; button directly inside the Paid Payments table&#xa;&#xa;Finding Receipts: Once generated, a digital text receipt (.txt file) is automatically saved to the &apos;bills&apos; folder on your computer for auditing&#xa;purposes."/>
                   </Properties>
                 </Component>
               </SubComponents>
