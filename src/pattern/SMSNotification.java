@@ -37,4 +37,12 @@ public class SMSNotification implements Notification {
         System.out.println("  \"" + message + "\"");
         System.out.println("=======================================================\n");
     }
+    
+    
+    // SMS cannot send pdfs, so make it ignore the file)
+    @Override
+    public void notifyUserWithAttachment(String recipient, String message, String filePath) {
+        System.out.println("SMS does not support attachments. Sending standard SMS instead.");
+        notifyUser(recipient, message);
+    }
 }

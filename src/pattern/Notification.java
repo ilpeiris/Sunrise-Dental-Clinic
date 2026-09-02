@@ -10,4 +10,6 @@ package pattern;
  */
 public interface Notification {
     void notifyUser(String recipient, String message);
+    // method for pdf attachments
+    void notifyUserWithAttachment(String recipient, String message, String filePath);
 }

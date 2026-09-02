@@ -7,6 +7,8 @@ package service;
 import dao.BillDAO;
 import model.Bill;
 import pattern.PrinterSpooler;
+import pattern.Notification;
+import pattern.NotificationFactory;
 
 /**
  *
@@ -30,7 +32,21 @@ public class BillingService {
             
            
             if (printBill != null) {
+                // generates the pdf
                 PrinterSpooler.getInstance().printReceipt(printBill);
+                
+                //email the pdf to the patient
+                String pdfPath = "bills/Bill_" + printBill.getBillNo() + ".pdf";
+                String msg = "Dear " + printBill.getPatientName() + ",\n\n"
+                           + "Thank you for visiting Sunrise Dental Clinic. "
+                           + "Please find attached your official invoice for Appointment " 
+                           + printBill.getAppointmentNoStr() + ".\n\n"
+                           + "Warm Regards,\nSunrise Dental Management";
+
+                Notification emailAlert = NotificationFactory.getNotification("EMAIL");
+                if (emailAlert != null && printBill.getEmail() != null) {
+                    emailAlert.notifyUserWithAttachment(printBill.getEmail(), msg, pdfPath);
+                }               
             }
         }
         return isGenerated;
