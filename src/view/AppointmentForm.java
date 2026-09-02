@@ -205,13 +205,13 @@ public class AppointmentForm extends javax.swing.JFrame {
 
         tblAppointments.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Appt No", "Date", "Time", "Patient Name", "Doctor", "Treatment"
+                "Appt No", "Date", "Time", "Patient Name", "Doctor", "Treatment", "Email"
             }
         ));
         jScrollPane1.setViewportView(tblAppointments);
@@ -224,7 +224,7 @@ public class AppointmentForm extends javax.swing.JFrame {
 
         txtAddress.addActionListener(this::txtAddressActionPerformed);
 
-        btnSearch.setText("Search by Name");
+        btnSearch.setText("Search by Name, Appt NO");
         btnSearch.addActionListener(this::btnSearchActionPerformed);
 
         cmbTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM" }));
@@ -396,9 +396,7 @@ public class AppointmentForm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(57, 57, 57)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -447,8 +445,8 @@ public class AppointmentForm extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel14))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                    .addComponent(jLabel14))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -484,7 +482,8 @@ public class AppointmentForm extends javax.swing.JFrame {
                     rs.getString("appt_time"),
                     rs.getString("patient_name"),
                     rs.getString("dentist_name"),   
-                    rs.getString("treatment_type")
+                    rs.getString("treatment_type"),
+                        rs.getString("email")
                 });
             }
         } catch (Exception e) {
@@ -678,7 +677,8 @@ public class AppointmentForm extends javax.swing.JFrame {
                 rs.getString("appointment_no"),
                 rs.getDate("appt_date"),
                 rs.getString("appt_time"),
-                rs.getString("name")
+                rs.getString("name"),
+                rs.getString("email")
             });
         }
     } catch (Exception e) {
@@ -709,7 +709,8 @@ java.util.Date selectedDate = filterDateChooser.getDate();
                     rs.getString("appt_time"),
                     rs.getString("patient_name"), 
                     rs.getString("dentist_name"), 
-                    rs.getString("treatment_type")
+                    rs.getString("treatment_type"),
+                    rs.getString("email")
                 });
             }
         } catch (Exception e) { 

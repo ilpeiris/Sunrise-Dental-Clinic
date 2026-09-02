@@ -50,7 +50,7 @@ public class AppointmentDAO {
         try {
             java.sql.Connection con = db.DBConnection.getInstance();
             
-            String sql = "SELECT a.appointment_no, a.appt_date, a.appt_time, p.name AS patient_name, d.name AS dentist_name, t.treatment_type " +
+            String sql = "SELECT a.appointment_no, a.appt_date, a.appt_time, p.name AS patient_name, d.name AS dentist_name, t.treatment_type, p.email " +
                          "FROM appointment a " +
                          "JOIN patient p ON a.patient_id = p.id " +
                          "JOIN dentist d ON a.dentist_id = d.id " +
@@ -70,7 +70,7 @@ public class AppointmentDAO {
         java.sql.ResultSet rs = null;
         try {
             java.sql.Connection con = db.DBConnection.getInstance();
-            String sql = "SELECT a.appointment_no, a.appt_date, a.appt_time, p.name AS patient_name, d.name AS dentist_name, t.treatment_type " +
+            String sql = "SELECT a.appointment_no, a.appt_date, a.appt_time, p.name AS patient_name, d.name AS dentist_name, t.treatment_type, p.email " +
                          "FROM appointment a " +
                          "JOIN patient p ON a.patient_id = p.id " +
                          "JOIN dentist d ON a.dentist_id = d.id " +
@@ -116,7 +116,7 @@ public class AppointmentDAO {
         try {
             java.sql.Connection con = db.DBConnection.getInstance();
             // Searches with appt no, patient name, contact number
-            String sql = "SELECT a.appointment_no, a.appt_date, a.appt_time, p.name " +
+            String sql = "SELECT a.appointment_no, a.appt_date, a.appt_time, p.name, p.email " +
                          "FROM appointment a JOIN patient p ON a.patient_id = p.id " +
                          "WHERE a.appointment_no LIKE ? OR p.name LIKE ? OR p.contact_number LIKE ?";
             java.sql.PreparedStatement pst = con.prepareStatement(sql);
