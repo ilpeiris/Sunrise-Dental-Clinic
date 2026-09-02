@@ -18,7 +18,9 @@ public class Bill implements Printable {
     private String contactNumber;
     
     private String appointmentNoStr; 
-    private String dentistName;      
+    private String dentistName;  
+
+    private String email;    
 
     public Bill() {}
 
@@ -44,6 +46,11 @@ public class Bill implements Printable {
 
     public String getDentistName() { return dentistName; }
     public void setDentistName(String dentistName) { this.dentistName = dentistName; }
+    
+    
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+    
     
     @Override
     public String getPrintableDetails() {

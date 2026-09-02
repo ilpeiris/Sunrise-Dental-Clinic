@@ -41,7 +41,7 @@ public class BillDAO {
 
     public Bill getBillDetails(String billNo) {
         Bill bill = null;
-        String sql = "SELECT b.bill_no, a.appointment_no, b.total_cost, p.name AS patient_name, p.contact_number, d.name AS dentist_name " +
+        String sql = "SELECT b.bill_no, a.appointment_no, b.total_cost, p.name AS patient_name, p.contact_number, d.name AS dentist_name, p.email " +
                      "FROM bill b " +
                      "JOIN appointment a ON b.appointment_id = a.id " +
                      "JOIN patient p ON a.patient_id = p.id " +
@@ -60,7 +60,8 @@ public class BillDAO {
                     bill.setTotalCost(rs.getDouble("total_cost"));
                     bill.setPatientName(rs.getString("patient_name"));           
                     bill.setContactNumber(rs.getString("contact_number")); 
-                    bill.setDentistName(rs.getString("dentist_name"));        
+                    bill.setDentistName(rs.getString("dentist_name"));   
+                    bill.setEmail(rs.getString("email"));
                 }
             }
         } catch (Exception e) {
