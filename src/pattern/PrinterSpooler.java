@@ -4,6 +4,13 @@
  */
 package pattern;
 import model.Bill;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+
+
 /**
  *
  * @author ilpeiris
@@ -14,7 +21,7 @@ public class PrinterSpooler {
 
     
     private PrinterSpooler() {
-        System.out.println("Printer Spooler Initialized. Ready for print jobs.");
+        System.out.println("Printer Spooler Initialized. Ready for PDF print jobs.");
     }
 
     
@@ -27,61 +34,50 @@ public class PrinterSpooler {
 
 
     
-    public void printReceipt(model.Bill newBill) {
-        String receiptContent = 
-            "========================================================================================================\n" +
-            "                                                                                                        \n" +
-            "                %%%%%%%%  %%%     %%%  %%%%     %%%  %%%%%%%%%   %%%   %%%%%%%  %%%%%%%%%               \n" +
-            "               %%%%  %%   %%%     %%%  %%%%%    %%%  %%%% %%%%%  %%%  %%%%  %%  %%%%                    \n" +
-            "               %%%%%%     %%%     %%%  %%%%%%%  %%%  %%%%  %%%%  %%%  %%%%%%    %%%%%%%%                \n" +
-            "                %%%%%%%%  %%%     %%%  %%% %%%% %%%  %%%%%%%%%   %%%   %%%%%%%% %%%%%%%%                \n" +
-            "                %   %%%%% %%%%    %%%  %%%  %%%%%%%  %%%%%%%%    %%%   %   %%%% %%%%                    \n" +
-            "              %%%%%%%%%%   %%%%%%%%%   %%%    %%%%%  %%%%  %%%%  %%%  %%%%%%%%% %%%%%%%%%               \n" +
-            "                %%%%%%      %%%%%%     %%%      %%%  %%%    %%%  %%%   %%%%%%   %%%%%%%%%               \n" +
-            "                                                                                                        \n" +
-            "========================================================================================================\n" +
-            "Bill No: " + newBill.getBillNo() + "\n" +
-            "Appointment No: " + newBill.getAppointmentNoStr() + "\n" +
-            "Patient Name: " + newBill.getPatientName() + "\n" +
-            "Contact: " + newBill.getContactNumber() + "\n" +
-            "Attending Dentist: " + newBill.getDentistName() + "\n" +
-            "Total Cost: LKR " + newBill.getTotalCost() + "\n" +
-            "========================================================================================================\n" +
-            "                               Thank you! Please visit again.                                           \n";
-            
-      
-        System.out.println(receiptContent);
+    
+    
+    public void printReceipt(Bill newBill) {
+        // makesure the directory exists
+        File directory = new File("bills");
+        if (!directory.exists()) {
+            directory.mkdirs(); 
+        }
 
-        // txt file
-        java.io.FileWriter writer = null;
+        String filePath = "bills/Bill_" + newBill.getBillNo() + ".pdf";
+        Document document = new Document();
+
         try {
-            
-            java.io.File directory = new java.io.File("bills");
-            if (!directory.exists()) {
-                directory.mkdirs(); 
-            }
-            
-           
-            String filePath = "bills/Bill_" + newBill.getBillNo() + ".txt";
-            
-           
-            writer = new java.io.FileWriter(filePath);
-            writer.write(receiptContent);
-            System.out.println("--> File saved successfully: " + filePath);
-            
-        } catch (java.io.IOException e) {
-            System.out.println("File Write Error: " + e.getMessage());
-            
+            PdfWriter.getInstance(document, new FileOutputStream(filePath));
+            document.open();
+
+            // write pdf content
+            document.add(new Paragraph("=========================================="));
+            document.add(new Paragraph("          SUNRISE DENTAL CLINIC           "));
+            document.add(new Paragraph("=========================================="));
+            document.add(new Paragraph("Bill No: " + newBill.getBillNo()));
+            document.add(new Paragraph("Appointment No: " + newBill.getAppointmentNoStr()));
+            document.add(new Paragraph("Patient Name: " + newBill.getPatientName()));
+            document.add(new Paragraph("Contact: " + newBill.getContactNumber()));
+            document.add(new Paragraph("Attending Dentist: " + newBill.getDentistName()));
+            document.add(new Paragraph("------------------------------------------"));
+            document.add(new Paragraph("Total Cost: LKR " + newBill.getTotalCost()));
+            document.add(new Paragraph("=========================================="));
+            document.add(new Paragraph("      Thank you! Please visit again.      "));
+
+            System.out.println(" PDF saved successfully: " + filePath);
+
+        } catch (Exception e) {
+            System.out.println("PDF Generation Error: " + e.getMessage());
         } finally {
-           
-            System.out.println("Executing finally block: Cleaning up file resources.");
-            try {
-                if (writer != null) {
-                    writer.close(); 
-                }
-            } catch (java.io.IOException ex) {
-                System.out.println("Error closing writer: " + ex.getMessage());
+            if (document.isOpen()) {
+                document.close();
             }
         }
     }
 }
+    
+    
+    
+    
+    
+    
