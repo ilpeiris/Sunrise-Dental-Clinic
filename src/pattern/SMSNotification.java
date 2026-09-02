@@ -19,7 +19,7 @@ public class SMSNotification implements Notification {
 
         String timeStamp = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a").format(new Date());
 
-        System.out.println("\n=======================================================");
+        System.out.println("\n");
         System.out.println("  >>> OUTGOING SMS NOTIFICATION TRIGGERED <<<  ");
         System.out.println("=======================================================");
         System.out.println("  .----------------. ");
