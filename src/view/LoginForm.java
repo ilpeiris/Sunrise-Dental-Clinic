@@ -166,6 +166,8 @@ public class LoginForm extends javax.swing.JFrame {
         //start the user sessionn
         pattern.UserSession.getInstance().startSession(username);
         
+        System.out.println("Session Token Generated: " + pattern.UserSession.getInstance().getSessionToken());
+        
         javax.swing.JOptionPane.showMessageDialog(this, "Login Successful! Welcome to Sunrise Dental.");
         
         DashboardForm dashboard = new DashboardForm();
