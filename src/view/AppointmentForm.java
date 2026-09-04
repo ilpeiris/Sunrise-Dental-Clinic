@@ -589,9 +589,17 @@ public class AppointmentForm extends javax.swing.JFrame {
     boolean success = apptService.processRegistration(patient, appt);
 
     if (success) {
+        
+        // Check if email exists 
+        String emailStatus;
+        if (patient.getEmail() != null && !patient.getEmail().trim().isEmpty()) {
+            emailStatus = "A confirmation email has been sent to the patient.";
+        } else {
+            emailStatus = "No email provided; digital dispatch skipped.";
+        }
+        // FIXED
         javax.swing.JOptionPane.showMessageDialog(this, 
-            "Appointment Registered Successfully!\n" +
-            "A confirmation email has been sent to the patient.", 
+            "Appointment Registered Successfully!\n" + emailStatus, 
             "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
         
         

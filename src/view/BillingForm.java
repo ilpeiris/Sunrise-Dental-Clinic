@@ -296,7 +296,7 @@ public class BillingForm extends javax.swing.JFrame {
         javax.swing.JOptionPane.showMessageDialog(this, 
             "Bill Generated Successfully!\n\n" +
             "• PDF Invoice saved locally.\n" +
-            "• Secure email with attachment sent to patient.\n" +
+            "• Secure email sent (if patient has a registered email address).\n" +
             "• Use the 'View Bill' button in the table to open the PDF.",
             "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
         txtApptNo.setText("");
