@@ -31,7 +31,7 @@ The application is structured using a strict **3-Tier MVC (Model-View-Controller
 
 ## 🛠️ Technology Stack
 
-* **Language:** Java (JDK 11 / 17)
+* **Language:** Java (JDK 26)
 * **GUI Framework:** Java Swing (AWT/Swing)
 * **Database:** MySQL (InnoDB Engine)
 * **Unit Testing:** JUnit 4
@@ -56,10 +56,8 @@ The application is structured using a strict **3-Tier MVC (Model-View-Controller
    * **Password:** `admin123`
 
 ### 2. Project Setup
-0. Clone this repository:
-   ```bash
- https://github.com/ilpeiris/Sunrise-Dental-Clinic.git
-
+Clone this repository:
+  [https://github.com/ilpeiris/Sunrise-Dental-Clinic.git](https://github.com/ilpeiris/Sunrise-Dental-Clinic.git)
 
 1. Open the project in **Apache NetBeans IDE**.
 
