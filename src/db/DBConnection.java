@@ -21,7 +21,6 @@ private DBConnection() {
     System.out.println("Database Connection Manager Created");
 }
 
-
 public static Connection getInstance() throws DatabaseConnectionException {
     try {
         if (instance == null || instance.isClosed()) {

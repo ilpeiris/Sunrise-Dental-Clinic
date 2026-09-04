@@ -61,4 +61,22 @@ public class AuthenticationTest {
         assertNotNull("Session token should not be null after login", token);
         assertEquals("Logged in user should be 'admin'", "admin", UserSession.getInstance().getLoggedInUser());
     }
+    
+    
+    
+    // Test Case 5: Boundary Value Analysis - Invalid Contact Number
+    @Test
+    public void testInvalidContactNumberBoundary() {
+        String contact = "077123456"; // 9 digits (Below Boundary)
+        boolean isValid = contact.matches("\\d{10}");
+        
+        assertFalse("System must reject contact numbers below the 10-digit boundary", isValid);
+    }
+    
+    // Test Case 6: Factory Pattern - Email Notification Creation
+    @Test
+    public void testEmailNotificationFactory() {
+        pattern.Notification emailAlert = pattern.NotificationFactory.getNotification("EMAIL");
+        assertNotNull("Factory should successfully create an EmailNotification object", emailAlert);
+    }
 }

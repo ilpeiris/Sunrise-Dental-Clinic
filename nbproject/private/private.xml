@@ -8,6 +8,10 @@
             <file>file:/C:/Users/ilpeiris/Documents/NetBeansProjects/SunriseDentalClinic/src/view/AppointmentForm.java</file>
             <file>file:/C:/Users/ilpeiris/Documents/NetBeansProjects/SunriseDentalClinic/src/dao/AppointmentDAO.java</file>
             <file>file:/C:/Users/ilpeiris/Documents/NetBeansProjects/SunriseDentalClinic/src/pattern/EmailNotification.java</file>
+            <file>file:/C:/Users/ilpeiris/Documents/NetBeansProjects/SunriseDentalClinic/src/pattern/UserSession.java</file>
+            <file>file:/C:/Users/ilpeiris/Documents/NetBeansProjects/SunriseDentalClinic/src/view/LoginForm.java</file>
+            <file>file:/C:/Users/ilpeiris/Documents/NetBeansProjects/SunriseDentalClinic/test/test_case/AuthenticationTest.java</file>
+            <file>file:/C:/Users/ilpeiris/Documents/NetBeansProjects/SunriseDentalClinic/test/test_case/SunriseDentalTestRunner.java</file>
         </group>
     </open-files>
 </project-private>
