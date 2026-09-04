@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 02, 2026 at 04:03 AM
+-- Generation Time: Sep 04, 2026 at 10:06 AM
 -- Server version: 9.1.0
 -- PHP Version: 8.3.14
 
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `appointment` (
   KEY `patient_id` (`patient_id`),
   KEY `dentist_id` (`dentist_id`),
   KEY `treatment_id` (`treatment_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `appointment`
@@ -91,7 +91,25 @@ INSERT INTO `appointment` (`id`, `appointment_no`, `appt_date`, `appt_time`, `pa
 (20, 'A012', '2026-09-01', '10:30 AM', 19, 2, 4),
 (21, 'A013', '2026-09-02', '09:00 AM', 20, 1, 1),
 (22, 'A014', '2026-09-01', '11:30 AM', 15, 2, 3),
-(23, 'A015', '2026-09-01', '11:00 AM', 21, 2, 3);
+(23, 'A015', '2026-09-01', '11:00 AM', 21, 2, 3),
+(24, 'A016', '2026-09-03', '10:00 AM', 22, 2, 3),
+(25, 'A017', '2026-09-02', '10:30 AM', 15, 2, 3),
+(26, 'A018', '2026-09-02', '11:00 AM', 15, 1, 1),
+(27, 'A019', '2026-09-02', '10:00 AM', 15, 2, 3),
+(28, 'A020', '2026-09-02', '10:00 AM', 15, 1, 3),
+(29, 'A021', '2026-09-03', '10:30 AM', 23, 2, 2),
+(30, 'A022', '2026-09-05', '10:00 AM', 24, 2, 3),
+(31, 'A023', '2026-09-02', '09:00 AM', 15, 2, 2),
+(32, 'A024', '2026-09-05', '09:00 AM', 25, 1, 3),
+(33, 'A025', '2026-09-02', '11:30 AM', 26, 1, 1),
+(34, 'A026', '2026-09-03', '11:00 AM', 27, 2, 2),
+(35, 'A027', '2026-09-04', '10:30 AM', 28, 1, 1),
+(36, 'A028', '2026-09-04', '11:00 AM', 29, 1, 1),
+(37, 'A029', '2026-09-04', '09:00 AM', 30, 1, 1),
+(38, 'A030', '2026-09-04', '11:00 AM', 31, 2, 2),
+(39, 'A031', '2026-09-16', '10:00 AM', 33, 2, 2),
+(40, 'A032', '2026-09-24', '10:00 AM', 34, 1, 3),
+(41, 'A033', '2026-09-04', '11:30 AM', 35, 2, 2);
 
 --
 -- Triggers `appointment`
@@ -131,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `bill` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `bill_no` (`bill_no`),
   KEY `appointment_id` (`appointment_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `bill`
@@ -148,7 +166,17 @@ INSERT INTO `bill` (`id`, `bill_no`, `appointment_id`, `total_cost`) VALUES
 (10, 'B008', 16, 5500),
 (11, 'B009', 17, 5500),
 (12, 'B010', 18, 5500),
-(13, 'B011', 19, 10000);
+(13, 'B011', 19, 10000),
+(14, 'B012', 31, 5500),
+(15, 'B013', 32, 16500),
+(16, 'B014', 29, 5500),
+(17, 'B015', 33, 4000),
+(18, 'B016', 34, 5500),
+(19, 'B017', 35, 4000),
+(20, 'B018', 36, 4000),
+(21, 'B019', 37, 4000),
+(22, 'B020', 38, 5500),
+(23, 'B021', 41, 5500);
 
 -- --------------------------------------------------------
 
@@ -189,25 +217,40 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `name` varchar(100) NOT NULL,
   `address` varchar(200) DEFAULT NULL,
   `contact_number` varchar(15) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `patient_id` (`patient_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `patient`
 --
 
-INSERT INTO `patient` (`id`, `patient_id`, `name`, `address`, `contact_number`) VALUES
-(18, 'P1788181281083', 'asdsads', 'asdsadasd', '0898989898'),
-(17, 'P1788179916148', 'testffdd', 'testtt', '0787183233'),
-(16, 'P1787553052668', 'peri', 'asds', '0787155678'),
-(15, 'P1787550870858', 'laka', 'asdasds', '1234567890'),
-(14, 'P1787550504254', 'isurus', 'asdasd', '0808080823'),
-(13, 'P1787502157933', 'Lakmal', '457/A, panadura', '0879587322'),
-(12, 'P1787499984745', 'Isuru', 'Panadura,sri lanka', '0787195874'),
-(19, 'P1788238646029', 'perieis', 'Panadura, Galle', '0781111111'),
-(20, 'P1788245974769', 'sdss', 'asdsad', '2323223232'),
-(21, 'P1788257517572', 'lakmal', 'Colombo, Sri Lanka', '0771234567');
+INSERT INTO `patient` (`id`, `patient_id`, `name`, `address`, `contact_number`, `email`) VALUES
+(18, 'P1788181281083', 'asdsads', 'asdsadasd', '0898989898', NULL),
+(17, 'P1788179916148', 'testffdd', 'testtt', '0787183233', NULL),
+(16, 'P1787553052668', 'peri', 'asds', '0787155678', NULL),
+(15, 'P1787550870858', 'laka', 'asdasds', '1234567890', NULL),
+(14, 'P1787550504254', 'isurus', 'asdasd', '0808080823', NULL),
+(13, 'P1787502157933', 'Lakmal', '457/A, panadura', '0879587322', NULL),
+(12, 'P1787499984745', 'Isuru', 'Panadura,sri lanka', '0787195874', NULL),
+(19, 'P1788238646029', 'perieis', 'Panadura, Galle', '0781111111', NULL),
+(20, 'P1788245974769', 'sdss', 'asdsad', '2323223232', NULL),
+(21, 'P1788257517572', 'lakmal', 'Colombo, Sri Lanka', '0771234567', NULL),
+(22, 'P1788326016333', 'isurr', 'testing address', '0888888113', 'monsterj98cc@gmail.com'),
+(23, 'P1788328827693', 'Isuru Lakmal', 'Colombo, Sri Lanka', '0717654321', 'sunrisedental002@gmail.com'),
+(24, 'P1788329069265', 'Isuru Peiris', 'Colombo, Sri Lanka', '0761234567', 'sunrisedental002@gmail.com'),
+(25, 'P1788337793208', 'Isuru Lakmal', 'Colombo, Sri Lanka', '2134567890', 'sunrisedental002@gmail.com'),
+(26, 'P1788340533779', 'Isuru Lakmal', 'Panadura, Sri Lanka', '0787453213', 'sunrisedental002@gmail.com'),
+(27, 'P1788409128362', 'samanthi', 'Colombo, Sri Lanka', '0987654321', 'sunrisedental002@gmail.com'),
+(28, 'P1788495860025', 'Samanthi Sepalika', 'Colombo, Sri Lanka', '0789654321', 'sunrisedental002@gmail.com'),
+(29, 'P1788496747296', 'asdsad', 'asdsadsa', '1234567123', ''),
+(30, 'P1788505351962', 'Madusha Thamoji', 'Panadura, Sri Lanka', '0713949051', 'sunrisedental002@gmail.com'),
+(31, 'P1788506183995', 'Kaveesha Sonali', 'Kandy, Sri Lanka', '0779998888', ''),
+(32, 'P1788508241799', 'testuser', 'asds', '0781234567', ''),
+(33, 'P1788512910460', 'Savindi', 'addadad', '0787654123', 'sunrisedental002@gmail.com'),
+(34, 'P1788512962761', 'anoma', 'tstse', '0761234756', ''),
+(35, 'P1788513239063', 'newnew', 'asdas', '0876543212', '');
 
 -- --------------------------------------------------------
 
