@@ -22,9 +22,9 @@ public class BillingService {
         this.billDAO = new BillDAO();
     }
 
-    public boolean processBilling(String appointmentNo, String billNo) {
+    public boolean processBilling(String appointmentNo, String billNo, int treatmentId) {
         // generates the bill via Stored Procedure
-        boolean isGenerated = billDAO.generateBill(appointmentNo, billNo);
+        boolean isGenerated = billDAO.generateBill(appointmentNo, billNo, treatmentId);
         
         if (isGenerated) {
             // Fetch the fully calculated bill from the database

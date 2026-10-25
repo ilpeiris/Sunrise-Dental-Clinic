@@ -19,7 +19,7 @@ import exception.DatabaseConnectionException;
 public class AppointmentDAO {
     
     public boolean addAppointment(Appointment appt) {
-        String sql = "INSERT INTO appointment (appointment_no, appt_date, appt_time, patient_id, dentist_id, treatment_id) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO appointment (appointment_no, appt_date, appt_time, patient_id, dentist_id) VALUES (?, ?, ?, ?, ?)";
         
         try (Connection con = DBConnection.getInstance();
              PreparedStatement pst = con.prepareStatement(sql)) {
@@ -29,7 +29,7 @@ public class AppointmentDAO {
             pst.setString(3, appt.getApptTime());
             pst.setInt(4, appt.getPatientId());
             pst.setInt(5, appt.getDentistId());
-            pst.setInt(6, appt.getTreatmentId());
+            
             
             int rows = pst.executeUpdate();
             return rows > 0;
@@ -50,11 +50,11 @@ public class AppointmentDAO {
         try {
             java.sql.Connection con = db.DBConnection.getInstance();
             
-            String sql = "SELECT a.appointment_no, a.appt_date, a.appt_time, p.name AS patient_name, d.name AS dentist_name, t.treatment_type, p.email " +
+            String sql = "SELECT a.appointment_no, a.appt_date, a.appt_time, p.name AS patient_name, d.name AS dentist_name, p.email " +
                          "FROM appointment a " +
                          "JOIN patient p ON a.patient_id = p.id " +
                          "JOIN dentist d ON a.dentist_id = d.id " +
-                         "JOIN treatment t ON a.treatment_id = t.id " +
+                         
                          "ORDER BY a.appt_date DESC, a.appt_time ASC";
             java.sql.PreparedStatement pst = con.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -70,11 +70,11 @@ public class AppointmentDAO {
         java.sql.ResultSet rs = null;
         try {
             java.sql.Connection con = db.DBConnection.getInstance();
-            String sql = "SELECT a.appointment_no, a.appt_date, a.appt_time, p.name AS patient_name, d.name AS dentist_name, t.treatment_type, p.email " +
+            String sql = "SELECT a.appointment_no, a.appt_date, a.appt_time, p.name AS patient_name, d.name AS dentist_name, p.email " +
                          "FROM appointment a " +
                          "JOIN patient p ON a.patient_id = p.id " +
                          "JOIN dentist d ON a.dentist_id = d.id " +
-                         "JOIN treatment t ON a.treatment_id = t.id " +
+                         
                          "WHERE a.appt_date = ?";
             java.sql.PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, dateStr);
@@ -116,44 +116,48 @@ public class AppointmentDAO {
         try {
             java.sql.Connection con = db.DBConnection.getInstance();
             // Searches with appt no, patient name, contact number
-            String sql = "SELECT a.appointment_no, a.appt_date, a.appt_time, p.name, p.email " +
-                         "FROM appointment a JOIN patient p ON a.patient_id = p.id " +
-                         "WHERE a.appointment_no LIKE ? OR p.name LIKE ? OR p.contact_number LIKE ?";
-            java.sql.PreparedStatement pst = con.prepareStatement(sql);
-            pst.setString(1, "%" + keyword + "%");
-            pst.setString(2, "%" + keyword + "%");
-            pst.setString(3, "%" + keyword + "%");
-            rs = pst.executeQuery();
-        } catch (Exception e) {
-            System.out.println("Search Appointments Error: " + e.getMessage());
-        }
-        return rs;
+            String sql = "SELECT a.appointment_no, a.appt_date, a.appt_time, p.name AS patient_name, d.name AS dentist_name, p.email " +
+                     "FROM appointment a " +
+                     "JOIN patient p ON a.patient_id = p.id " +
+                     "JOIN dentist d ON a.dentist_id = d.id " +
+                     "WHERE a.appointment_no LIKE ? OR p.name LIKE ? OR p.contact_number LIKE ?";
+                     
+        java.sql.PreparedStatement pst = con.prepareStatement(sql);
+        pst.setString(1, "%" + keyword + "%");
+        pst.setString(2, "%" + keyword + "%");
+        pst.setString(3, "%" + keyword + "%");
+        rs = pst.executeQuery();
+    } catch (Exception e) {
+        System.out.println("Search Appointments Error: " + e.getMessage());
+    }
+    return rs;
     }
     
     
     
     
-   //todays pending appt in Billing Form
-    public java.sql.ResultSet getPendingAppointmentsToday() {
-        java.sql.ResultSet rs = null;
-        try {
-            java.sql.Connection con = db.DBConnection.getInstance();
-            
-            String sql = "SELECT a.appointment_no, p.name, a.appt_time, " +
-                         "(d.consultation_fee + t.treatment_cost) AS expected_total " +
-                         "FROM appointment a " +
-                         "JOIN patient p ON a.patient_id = p.id " +
-                         "JOIN dentist d ON a.dentist_id = d.id " +
-                         "JOIN treatment t ON a.treatment_id = t.id " +
-                         "WHERE a.appt_date = CURDATE() " +
-                         "AND a.id NOT IN (SELECT appointment_id FROM bill)";
-            java.sql.PreparedStatement pst = con.prepareStatement(sql);
-            rs = pst.executeQuery();
-        } catch (Exception e) {
-            System.out.println("Pending Appts Error: " + e.getMessage());
-        }
-        return rs;
+   // pending appt in Billing Form
+    public java.sql.ResultSet getAllPendingAppointments() {
+    java.sql.ResultSet rs = null;
+    try {
+        java.sql.Connection con = db.DBConnection.getInstance();
+        
+      
+        String sql = "SELECT a.appointment_no, p.name AS patient_name, a.appt_date, a.appt_time, " +
+                     "d.name AS dentist_name, d.consultation_fee " +
+                     "FROM appointment a " +
+                     "JOIN patient p ON a.patient_id = p.id " +
+                     "JOIN dentist d ON a.dentist_id = d.id " +
+                     "WHERE a.id NOT IN (SELECT appointment_id FROM bill) " +
+                     "ORDER BY a.appt_date ASC";
+                     
+        java.sql.PreparedStatement pst = con.prepareStatement(sql);
+        rs = pst.executeQuery();
+    } catch (Exception e) {
+        System.out.println("Pending Appts Error: " + e.getMessage());
     }
+    return rs;
+}
     
     
     
@@ -176,15 +180,15 @@ public class AppointmentDAO {
 
     // Update Appointment Method
     public boolean updateAppointment(model.Appointment appt) {
-        String sql = "UPDATE appointment SET appt_date=?, appt_time=?, dentist_id=?, treatment_id=? WHERE appointment_no=?";
+        String sql = "UPDATE appointment SET appt_date=?, appt_time=?, dentist_id=? WHERE appointment_no=?";
         try (java.sql.Connection con = db.DBConnection.getInstance();
              java.sql.PreparedStatement pst = con.prepareStatement(sql)) {
              
             pst.setDate(1, appt.getApptDate());
             pst.setString(2, appt.getApptTime());
             pst.setInt(3, appt.getDentistId());
-            pst.setInt(4, appt.getTreatmentId());
-            pst.setString(5, appt.getAppointmentNo());
+            
+            pst.setString(4, appt.getAppointmentNo());
             
             int rows = pst.executeUpdate();
             return rows > 0;

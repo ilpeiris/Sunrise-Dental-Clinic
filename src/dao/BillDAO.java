@@ -18,15 +18,16 @@ import exception.DatabaseConnectionException;
 
 public class BillDAO {
     
-    public boolean generateBill(String appointmentNo, String billNo) {
+    public boolean generateBill(String appointmentNo, String billNo, int treatmentId) {
         //// Calls stored procedure inside db
-        String sql = "{CALL sp_GenerateBill(?, ?)}";
+        String sql = "{CALL sp_GenerateBill(?, ?, ?)}";
         
         try (Connection con = DBConnection.getInstance();
              CallableStatement cst = con.prepareCall(sql)) {
              
             cst.setString(1, appointmentNo);
             cst.setString(2, billNo);
+            cst.setInt(3, treatmentId);
             
             cst.execute();
             return true;
@@ -41,11 +42,12 @@ public class BillDAO {
 
     public Bill getBillDetails(String billNo) {
         Bill bill = null;
-        String sql = "SELECT b.bill_no, a.appointment_no, b.total_cost, p.name AS patient_name, p.contact_number, d.name AS dentist_name, p.email " +
+        String sql = "SELECT b.bill_no, a.appointment_no, b.total_cost, p.name AS patient_name, p.contact_number, d.name AS dentist_name, p.email, t.treatment_type " +
                      "FROM bill b " +
                      "JOIN appointment a ON b.appointment_id = a.id " +
                      "JOIN patient p ON a.patient_id = p.id " +
                      "JOIN dentist d ON a.dentist_id = d.id " +
+                     "JOIN treatment t ON b.treatment_id = t.id " +
                      "WHERE b.bill_no = ?";
         
         try (java.sql.Connection con = db.DBConnection.getInstance();
@@ -62,6 +64,7 @@ public class BillDAO {
                     bill.setContactNumber(rs.getString("contact_number")); 
                     bill.setDentistName(rs.getString("dentist_name"));   
                     bill.setEmail(rs.getString("email"));
+                    bill.setTreatmentName(rs.getString("treatment_type")); 
                 }
             }
         } catch (Exception e) {

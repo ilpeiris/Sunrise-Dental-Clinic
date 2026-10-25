@@ -130,6 +130,8 @@ public class BillingForm extends javax.swing.JFrame {
         txtAsciiLogo = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         lblWelcome = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        cmbTreatment = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -160,17 +162,17 @@ public class BillingForm extends javax.swing.JFrame {
 
         tblPending.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Appt No", "Patient Name", "Time", "Expected Total (LKR)"
+                "Appt No", "Patient Name", "Date & Time", "Doctor", "Consultation Fee (LKR)"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -180,7 +182,7 @@ public class BillingForm extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tblPending);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setText("Pending Payments (Today)");
+        jLabel3.setText("Pending Payments");
 
         txtAsciiLogo.setEditable(false);
         txtAsciiLogo.setColumns(20);
@@ -194,6 +196,11 @@ public class BillingForm extends javax.swing.JFrame {
 
         lblWelcome.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         lblWelcome.setText("jLabel5");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setText("Select Treatment:");
+
+        cmbTreatment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "General Cleaning - LKR 2500.00", "Tooth Extraction - LKR 4000.00", "Root Canal - LKR 15000.00", "Teeth Whitening - LKR 8500.00" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -210,34 +217,37 @@ public class BillingForm extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(259, 259, 259))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 83, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(76, 76, 76))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(406, 406, 406)
-                            .addComponent(jLabel4))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(336, 336, 336)
-                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(307, 307, 307)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel1))
-                            .addGap(50, 50, 50)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtApptNo, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtBillNo, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(297, 297, 297)
-                        .addComponent(btnGenerate, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(406, 406, 406)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(336, 336, 336)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(307, 307, 307)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel5))
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtApptNo, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtBillNo, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbTreatment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(222, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(76, 76, 76))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnGenerate, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(269, 269, 269))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,15 +268,19 @@ public class BillingForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtApptNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(18, 18, 18)
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(cmbTreatment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnGenerate, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnBack)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -279,6 +293,17 @@ public class BillingForm extends javax.swing.JFrame {
         
         String apptNo = txtApptNo.getText().trim();
     String billNo = txtBillNo.getText().trim();
+    
+    
+    
+    //Get selected treatment and fetch its ID ---
+        String selectedTreatment = cmbTreatment.getSelectedItem().toString().split(" - ")[0];
+        model.Treatment treatment = pattern.TreatmentFactory.getTreatment(selectedTreatment);
+        int treatmentId = 0;
+        if (treatment != null) {
+            treatmentId = Integer.parseInt(treatment.getTreatmentId().replaceAll("[^0-9]", ""));
+        }
+    
 
     if (apptNo.isEmpty() || billNo.isEmpty()) {
         javax.swing.JOptionPane.showMessageDialog(this, 
@@ -290,7 +315,7 @@ public class BillingForm extends javax.swing.JFrame {
 
     
     service.BillingService billService = new service.BillingService();
-    boolean success = billService.processBilling(apptNo, billNo);
+    boolean success = billService.processBilling(apptNo, billNo, treatmentId);
 
     if (success) {
         javax.swing.JOptionPane.showMessageDialog(this, 
@@ -320,17 +345,21 @@ public class BillingForm extends javax.swing.JFrame {
     private void loadPendingTable() {
         try {
             dao.AppointmentDAO apptDao = new dao.AppointmentDAO();
-            java.sql.ResultSet rs = apptDao.getPendingAppointmentsToday();
+            java.sql.ResultSet rs = apptDao.getAllPendingAppointments();
             javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tblPending.getModel();
             model.setRowCount(0); 
             
             while (rs != null && rs.next()) {
-                model.addRow(new Object[]{
-                    rs.getString("appointment_no"),
-                    rs.getString("name"),
-                    rs.getString("appt_time"),
-                    rs.getDouble("expected_total")
-                });
+            // Combine Date and Time into a single string for the UI table
+            String dateTime = rs.getDate("appt_date").toString() + " at " + rs.getString("appt_time");
+            
+            model.addRow(new Object[]{
+                rs.getString("appointment_no"),
+                rs.getString("patient_name"),
+                dateTime, 
+                rs.getString("dentist_name"),  
+                rs.getDouble("consultation_fee")
+            });
             }
         } catch (Exception e) { 
             System.out.println(e.getMessage()); 
@@ -528,10 +557,12 @@ public class BillingForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnGenerate;
+    private javax.swing.JComboBox<String> cmbTreatment;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

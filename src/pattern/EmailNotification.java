@@ -18,8 +18,8 @@ public class EmailNotification implements Notification {
     public void notifyUser(String recipientEmail, String messageText) {
         
         // YOUR CREDENTIALS
-        final String senderEmail = "ilpeiris02@gmail.com"; // Put your real Gmail here
-        final String appPassword = "pnnckcczlkfeeuvg"; // No spaces
+        final String senderEmail = ""; // Put your real Gmail here
+        final String appPassword = ""; // No spaces
 
         //SMTP SERVER
         Properties props = new Properties();
@@ -117,8 +117,8 @@ System.out.println("=======================================================\n");
     //new method implementation inside EmailNotification.java
     @Override
     public void notifyUserWithAttachment(String recipientEmail, String messageText, String filePath) {
-        final String senderEmail = "ilpeiris02@gmail.com"; 
-        final String appPassword = "pnnckcczlkfeeuvg"; 
+        final String senderEmail = ""; 
+        final String appPassword = ""; 
 
         java.util.Properties props = new java.util.Properties();
         props.put("mail.smtp.auth", "true");

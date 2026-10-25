@@ -12,7 +12,9 @@ package model;
 public class Bill implements Printable {
     private String billNo;
     private int appointmentId;
+    private int treatmentId;
     private double totalCost;
+    private String treatmentName;
     
     private String patientName;
     private String contactNumber;
@@ -21,6 +23,8 @@ public class Bill implements Printable {
     private String dentistName;  
 
     private String email;    
+    
+   
 
     public Bill() {}
 
@@ -30,6 +34,9 @@ public class Bill implements Printable {
     public int getAppointmentId() { return appointmentId; }
     public void setAppointmentId(int appointmentId) { this.appointmentId = appointmentId; }
 
+    public int getTreatmentId() { return treatmentId; }
+    public void setTreatmentId(int treatmentId) { this.treatmentId = treatmentId; }
+    
     public double getTotalCost() { return totalCost; }
     public void setTotalCost(double totalCost) { this.totalCost = totalCost; }
     
@@ -51,7 +58,8 @@ public class Bill implements Printable {
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
     
-    
+    public String getTreatmentName() { return treatmentName; }
+    public void setTreatmentName(String treatmentName) { this.treatmentName = treatmentName; }
     @Override
     public String getPrintableDetails() {
         return "Bill No: " + this.billNo + " | Total: LKR " + this.totalCost;

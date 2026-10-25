@@ -92,9 +92,7 @@ public class AppointmentForm extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         cmbDentist = new javax.swing.JComboBox<>();
-        cmbTreatment = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAppointments = new javax.swing.JTable();
         btnSave = new javax.swing.JButton();
@@ -200,20 +198,15 @@ public class AppointmentForm extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Select Dentist:");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel7.setText("Select Treatment:");
-
-        cmbTreatment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "General Cleaning - LKR 2500.00", "Tooth Extraction - LKR 4000.00", "Root Canal - LKR 15000.00", "Teeth Whitening - LKR 8500.00" }));
-
         tblAppointments.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Appt No", "Date", "Time", "Patient Name", "Doctor", "Treatment", "Email"
+                "Appt No", "Date", "Time", "Patient Name", "Doctor", "Email"
             }
         ));
         tblAppointments.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -363,7 +356,6 @@ public class AppointmentForm extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(jLabel1)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel7)
                     .addComponent(jLabel14))
                 .addGap(85, 85, 85)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -374,8 +366,7 @@ public class AppointmentForm extends javax.swing.JFrame {
                     .addComponent(cmbTime, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtPatientName)
                     .addComponent(txtApptNo)
-                    .addComponent(cmbDentist, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cmbTreatment, 0, 222, Short.MAX_VALUE))
+                    .addComponent(cmbDentist, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(85, 85, 85)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
@@ -449,16 +440,10 @@ public class AppointmentForm extends javax.swing.JFrame {
                                                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(8, 8, 8)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(cmbDentist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel6))
-                                                .addGap(15, 15, 15)
-                                                .addComponent(jLabel7))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(btnClear)
-                                                .addGap(7, 7, 7)
-                                                .addComponent(cmbTreatment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(cmbDentist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel6))
+                                            .addComponent(btnClear))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -502,7 +487,7 @@ public class AppointmentForm extends javax.swing.JFrame {
                     rs.getString("appt_time"),
                     rs.getString("patient_name"),
                     rs.getString("dentist_name"),   
-                    rs.getString("treatment_type"),
+                    
                         rs.getString("email")
                 });
             }
@@ -563,7 +548,7 @@ public class AppointmentForm extends javax.swing.JFrame {
     String email = txtEmail.getText().trim();
     //String dateStr = txtDate.getText().trim();
     String timeStr = cmbTime.getSelectedItem().toString();
-    String selectedTreatment = cmbTreatment.getSelectedItem().toString().split(" - ")[0];
+    //String selectedTreatment = cmbTreatment.getSelectedItem().toString().split(" - ")[0];
     String selectedDentist = cmbDentist.getSelectedItem().toString();
     
 
@@ -599,10 +584,10 @@ public class AppointmentForm extends javax.swing.JFrame {
     appt.setDentistId(dentistId);
     
     
-    model.Treatment treatment = pattern.TreatmentFactory.getTreatment(selectedTreatment);
-    if (treatment != null) {
-        appt.setTreatmentId(Integer.parseInt(treatment.getTreatmentId().replaceAll("[^0-9]", "")));
-    }
+    //model.Treatment treatment = pattern.TreatmentFactory.getTreatment(selectedTreatment);
+    //if (treatment != null) {
+    //    appt.setTreatmentId(Integer.parseInt(treatment.getTreatmentId().replaceAll("[^0-9]", "")));
+    //}
 
     // Service Layer
     service.AppointmentService apptService = new service.AppointmentService();
@@ -705,7 +690,9 @@ public class AppointmentForm extends javax.swing.JFrame {
                 rs.getString("appointment_no"),
                 rs.getDate("appt_date"),
                 rs.getString("appt_time"),
-                rs.getString("name"),
+                rs.getString("patient_name"),
+                rs.getString("dentist_name"),
+                //rs.getString("name"),
                 rs.getString("email")
             });
         }
@@ -737,7 +724,7 @@ java.util.Date selectedDate = filterDateChooser.getDate();
                     rs.getString("appt_time"),
                     rs.getString("patient_name"), 
                     rs.getString("dentist_name"), 
-                    rs.getString("treatment_type"),
+                    
                     rs.getString("email")
                 });
             }
@@ -776,34 +763,46 @@ java.util.Date selectedDate = filterDateChooser.getDate();
             return; 
         }
         
-        // Null values check ----  text fields 
-        Object apptNoObj = tblAppointments.getValueAt(row, 0);
-        txtApptNo.setText(apptNoObj != null ? apptNoObj.toString() : "");
-        
-        Object nameObj = tblAppointments.getValueAt(row, 3);
-        txtPatientName.setText(nameObj != null ? nameObj.toString() : "");
-        
-        Object emailObj = tblAppointments.getValueAt(row, 6);
-        txtEmail.setText(emailObj != null ? emailObj.toString() : "");
-        
-        Object timeObj = tblAppointments.getValueAt(row, 2);
-        if (timeObj != null) {
-            cmbTime.setSelectedItem(timeObj.toString());
+    Object apptNoObj = tblAppointments.getValueAt(row, 0);
+    txtApptNo.setText(apptNoObj != null ? apptNoObj.toString() : "");
+    
+    Object nameObj = tblAppointments.getValueAt(row, 3);
+    txtPatientName.setText(nameObj != null ? nameObj.toString() : "");
+    
+    
+    Object emailObj = tblAppointments.getValueAt(row, 5);
+    txtEmail.setText(emailObj != null ? emailObj.toString() : "");
+    
+    Object timeObj = tblAppointments.getValueAt(row, 2);
+    if (timeObj != null) {
+        cmbTime.setSelectedItem(timeObj.toString());
+    }
+    
+    // Date
+    Object dateObj = tblAppointments.getValueAt(row, 1);
+    if (dateObj != null) {
+        try {
+            java.util.Date date = new java.text.SimpleDateFormat("yyyy-MM-dd").parse(dateObj.toString());
+            txtDateChooser.setDate(date);
+        } catch (Exception e) {
+            System.out.println("Date parse error: " + e.getMessage());
         }
-        
-        // Date
-        Object dateObj = tblAppointments.getValueAt(row, 1);
-        if (dateObj != null) {
-            try {
-                java.util.Date date = new java.text.SimpleDateFormat("yyyy-MM-dd").parse(dateObj.toString());
-                txtDateChooser.setDate(date);
-            } catch (Exception e) {
-                System.out.println("Date parse error: " + e.getMessage());
-            }
-        } else {
-            txtDateChooser.setDate(null);
+    } else {
+        txtDateChooser.setDate(null);
+    }   
+    
+ Object dentistObj = tblAppointments.getValueAt(row, 4); 
+if (dentistObj != null) {
+    String dentistName = dentistObj.toString();
+    
+    //  select the one that matches the doctor's name
+    for (int i = 0; i < cmbDentist.getItemCount(); i++) {
+        if (cmbDentist.getItemAt(i).toString().contains(dentistName)) {
+            cmbDentist.setSelectedIndex(i);
+            break;
         }
-        
+    }
+}   
     
         
     }//GEN-LAST:event_tblAppointmentsMouseClicked
@@ -842,7 +841,7 @@ java.util.Date selectedDate = filterDateChooser.getDate();
     java.util.Date selectedDate = txtDateChooser.getDate();
     String timeStr = cmbTime.getSelectedItem().toString();
     String selectedDentist = cmbDentist.getSelectedItem().toString();
-    String selectedTreatment = cmbTreatment.getSelectedItem().toString().split(" - ")[0];
+    //String selectedTreatment = cmbTreatment.getSelectedItem().toString().split(" - ")[0];
 
     if (selectedDate == null || apptNo.isEmpty()) {
         javax.swing.JOptionPane.showMessageDialog(this, "Please select an appointment from the table and ensure Date/Time are filled.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -857,10 +856,10 @@ java.util.Date selectedDate = filterDateChooser.getDate();
     int dentistId = Integer.parseInt(selectedDentist.split(" ")[0]); 
     appt.setDentistId(dentistId);
 
-    model.Treatment treatment = pattern.TreatmentFactory.getTreatment(selectedTreatment);
-    if (treatment != null) {
-        appt.setTreatmentId(Integer.parseInt(treatment.getTreatmentId().replaceAll("[^0-9]", "")));
-    }
+    //model.Treatment treatment = pattern.TreatmentFactory.getTreatment(selectedTreatment);
+    //if (treatment != null) {
+    //    appt.setTreatmentId(Integer.parseInt(treatment.getTreatmentId().replaceAll("[^0-9]", "")));
+    //}
 
     dao.AppointmentDAO dao = new dao.AppointmentDAO();
     if (dao.updateAppointment(appt)) {
@@ -926,7 +925,6 @@ java.util.Date selectedDate = filterDateChooser.getDate();
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbDentist;
     private javax.swing.JComboBox<String> cmbTime;
-    private javax.swing.JComboBox<String> cmbTreatment;
     private com.toedter.calendar.JDateChooser filterDateChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -939,7 +937,6 @@ java.util.Date selectedDate = filterDateChooser.getDate();
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
