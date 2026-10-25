@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 04, 2026 at 10:06 AM
+-- Generation Time: Oct 25, 2026 at 06:19 AM
 -- Server version: 9.1.0
 -- PHP Version: 8.3.14
 
@@ -268,14 +268,14 @@ CREATE TABLE IF NOT EXISTS `staff` (
   `password` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `staff`
 --
 
 INSERT INTO `staff` (`id`, `name`, `address`, `contact_number`, `username`, `password`) VALUES
-(1, 'Admin User', 'Clinic HQ', '0771234567', 'admin', 'admin123');
+(2, 'Admin', 'HQ', '0987654321', 'admin', '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9');
 
 -- --------------------------------------------------------
 
