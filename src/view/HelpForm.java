@@ -95,6 +95,7 @@ public class HelpForm extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea4 = new javax.swing.JTextArea();
         btnBack = new javax.swing.JButton();
+        CreateAccount = new javax.swing.JButton();
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -299,6 +300,9 @@ public class HelpForm extends javax.swing.JFrame {
         btnBack.setText("Home");
         btnBack.addActionListener(this::btnBackActionPerformed);
 
+        CreateAccount.setText("Create Staff Account");
+        CreateAccount.addActionListener(this::CreateAccountActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -315,7 +319,10 @@ public class HelpForm extends javax.swing.JFrame {
                         .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 767, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(336, 336, 336)
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(319, 319, 319)
+                        .addComponent(CreateAccount)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -327,7 +334,10 @@ public class HelpForm extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(btnBack)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(CreateAccount)
+                .addContainerGap())
         );
 
         pack();
@@ -338,6 +348,54 @@ public class HelpForm extends javax.swing.JFrame {
         dashboard.setVisible(true);
         this.dispose();        
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void CreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateAccountActionPerformed
+
+
+    javax.swing.JTextField txtName = new javax.swing.JTextField();
+    javax.swing.JTextField txtAddress = new javax.swing.JTextField(); // අලුත්
+    javax.swing.JTextField txtContact = new javax.swing.JTextField(); // අලුත්
+    javax.swing.JTextField txtUser = new javax.swing.JTextField();
+    javax.swing.JPasswordField txtPass = new javax.swing.JPasswordField();
+
+
+    Object[] fields = {
+        "Staff Member Name:", txtName,
+        "Address:", txtAddress,
+        "Contact Number:", txtContact,
+        "New Username:", txtUser,
+        "New Password:", txtPass
+    };
+
+
+    int result = javax.swing.JOptionPane.showConfirmDialog(this, fields, "Create New Account", javax.swing.JOptionPane.OK_CANCEL_OPTION);
+
+
+    if (result == javax.swing.JOptionPane.OK_OPTION) {
+        String name = txtName.getText().trim();
+        String address = txtAddress.getText().trim();
+        String contact = txtContact.getText().trim();
+        String username = txtUser.getText().trim();
+        String password = String.valueOf(txtPass.getPassword()).trim();
+
+
+        if (name.isEmpty() || username.isEmpty() || password.isEmpty() || contact.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Name, Contact, Username, and Password are required!", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+
+        dao.StaffDAO dao = new dao.StaffDAO();
+        if (dao.addStaff(name, address, contact, username, password)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "New Account Created Successfully!");
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Failed to create account. Username might already exist.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    }//GEN-LAST:event_CreateAccountActionPerformed
+
+    
 
     
     
@@ -385,6 +443,7 @@ public class HelpForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CreateAccount;
     private javax.swing.JButton btnBack;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;

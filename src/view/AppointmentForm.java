@@ -177,6 +177,8 @@ public class AppointmentForm extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
+        btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -214,6 +216,11 @@ public class AppointmentForm extends javax.swing.JFrame {
                 "Appt No", "Date", "Time", "Patient Name", "Doctor", "Treatment", "Email"
             }
         ));
+        tblAppointments.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblAppointmentsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblAppointments);
 
         btnSave.setText("Book");
@@ -331,6 +338,12 @@ public class AppointmentForm extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel14.setText("Email:");
 
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(this::btnUpdateActionPerformed);
+
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(this::btnDeleteActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -381,7 +394,11 @@ public class AppointmentForm extends javax.swing.JFrame {
                         .addComponent(filterDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnFilterDate)
-                        .addGap(339, 339, 339))
+                        .addGap(117, 117, 117)
+                        .addComponent(btnUpdate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnDelete)
+                        .addGap(60, 60, 60))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1148, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(43, 43, 43))))
@@ -456,7 +473,10 @@ public class AppointmentForm extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnSearch))
-                    .addComponent(btnFilterDate, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnFilterDate)
+                        .addComponent(btnUpdate)
+                        .addComponent(btnDelete))
                     .addComponent(filterDateChooser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -595,7 +615,7 @@ public class AppointmentForm extends javax.swing.JFrame {
         if (patient.getEmail() != null && !patient.getEmail().trim().isEmpty()) {
             emailStatus = "A confirmation email has been sent to the patient.";
         } else {
-            emailStatus = "No email provided; digital dispatch skipped.";
+            emailStatus = "No email provided: digital dispatch skipped.";
         }
         // FIXED
         javax.swing.JOptionPane.showMessageDialog(this, 
@@ -746,6 +766,115 @@ java.util.Date selectedDate = filterDateChooser.getDate();
         txtPatientName.requestFocus();
     }//GEN-LAST:event_btnClearActionPerformed
 
+    private void tblAppointmentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAppointmentsMouseClicked
+        // TODO add your handling code here:
+        
+        
+        int row = tblAppointments.getSelectedRow(); 
+        
+        if (row == -1) {
+            return; 
+        }
+        
+        // Null values check ----  text fields 
+        Object apptNoObj = tblAppointments.getValueAt(row, 0);
+        txtApptNo.setText(apptNoObj != null ? apptNoObj.toString() : "");
+        
+        Object nameObj = tblAppointments.getValueAt(row, 3);
+        txtPatientName.setText(nameObj != null ? nameObj.toString() : "");
+        
+        Object emailObj = tblAppointments.getValueAt(row, 6);
+        txtEmail.setText(emailObj != null ? emailObj.toString() : "");
+        
+        Object timeObj = tblAppointments.getValueAt(row, 2);
+        if (timeObj != null) {
+            cmbTime.setSelectedItem(timeObj.toString());
+        }
+        
+        // Date
+        Object dateObj = tblAppointments.getValueAt(row, 1);
+        if (dateObj != null) {
+            try {
+                java.util.Date date = new java.text.SimpleDateFormat("yyyy-MM-dd").parse(dateObj.toString());
+                txtDateChooser.setDate(date);
+            } catch (Exception e) {
+                System.out.println("Date parse error: " + e.getMessage());
+            }
+        } else {
+            txtDateChooser.setDate(null);
+        }
+        
+    
+        
+    }//GEN-LAST:event_tblAppointmentsMouseClicked
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        int row = tblAppointments.getSelectedRow();
+    
+    if (row == -1) { 
+        javax.swing.JOptionPane.showMessageDialog(this, "Please select an appointment from the table first!", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    String apptNo = tblAppointments.getValueAt(row, 0).toString(); // get appt no
+    
+    // ask before del
+    int response = javax.swing.JOptionPane.showConfirmDialog(this, "Are you sure you want to delete Appointment " + apptNo + "?", "Confirm Delete", javax.swing.JOptionPane.YES_NO_OPTION);
+    
+    if (response == javax.swing.JOptionPane.YES_OPTION) {
+        dao.AppointmentDAO dao = new dao.AppointmentDAO();
+        if (dao.deleteAppointment(apptNo)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Appointment Deleted Successfully!");
+            loadTable(); // Table updte
+            btnClearActionPerformed(evt); // clear feilds
+            generateNextApptNo(); // next apt no
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Failed to delete appointment.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        
+        
+        String apptNo = txtApptNo.getText().trim();
+    java.util.Date selectedDate = txtDateChooser.getDate();
+    String timeStr = cmbTime.getSelectedItem().toString();
+    String selectedDentist = cmbDentist.getSelectedItem().toString();
+    String selectedTreatment = cmbTreatment.getSelectedItem().toString().split(" - ")[0];
+
+    if (selectedDate == null || apptNo.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Please select an appointment from the table and ensure Date/Time are filled.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    model.Appointment appt = new model.Appointment();
+    appt.setAppointmentNo(apptNo);
+    appt.setApptDate(new java.sql.Date(selectedDate.getTime()));
+    appt.setApptTime(timeStr);
+
+    int dentistId = Integer.parseInt(selectedDentist.split(" ")[0]); 
+    appt.setDentistId(dentistId);
+
+    model.Treatment treatment = pattern.TreatmentFactory.getTreatment(selectedTreatment);
+    if (treatment != null) {
+        appt.setTreatmentId(Integer.parseInt(treatment.getTreatmentId().replaceAll("[^0-9]", "")));
+    }
+
+    dao.AppointmentDAO dao = new dao.AppointmentDAO();
+    if (dao.updateAppointment(appt)) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Appointment Updated Successfully!");
+        loadTable();
+        btnClearActionPerformed(evt);
+        generateNextApptNo();
+    } else {
+        javax.swing.JOptionPane.showMessageDialog(this, "Failed to update. Check double-booking rules.", "Database Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+        
+        
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
     
     
     
@@ -790,9 +919,11 @@ java.util.Date selectedDate = filterDateChooser.getDate();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFilterDate;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbDentist;
     private javax.swing.JComboBox<String> cmbTime;
     private javax.swing.JComboBox<String> cmbTreatment;
