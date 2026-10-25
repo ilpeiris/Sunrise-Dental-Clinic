@@ -26,7 +26,7 @@ public static Connection getInstance() throws DatabaseConnectionException {
         if (instance == null || instance.isClosed()) {
             Class.forName("com.mysql.cj.jdbc.Driver");
             instance = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/sunrise_dental_db",
+                "jdbc:mysql://localhost:3306/sunrise_dental_db_appt",
                     "root", ""
             );
             System.out.println("Connected to Sunrise Dental Database");

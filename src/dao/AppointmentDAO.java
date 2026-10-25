@@ -158,4 +158,44 @@ public class AppointmentDAO {
     
     
     
+    // Delete Appointment Method
+    public boolean deleteAppointment(String apptNo) {
+        String sql = "DELETE FROM appointment WHERE appointment_no = ?";
+        try (java.sql.Connection con = db.DBConnection.getInstance();
+             java.sql.PreparedStatement pst = con.prepareStatement(sql)) {
+             
+            pst.setString(1, apptNo);
+            int rows = pst.executeUpdate();
+            return rows > 0;
+            
+        } catch (Exception e) {
+            System.out.println("Delete Appointment Error: " + e.getMessage());
+            return false;
+        }
+    }
+
+    // Update Appointment Method
+    public boolean updateAppointment(model.Appointment appt) {
+        String sql = "UPDATE appointment SET appt_date=?, appt_time=?, dentist_id=?, treatment_id=? WHERE appointment_no=?";
+        try (java.sql.Connection con = db.DBConnection.getInstance();
+             java.sql.PreparedStatement pst = con.prepareStatement(sql)) {
+             
+            pst.setDate(1, appt.getApptDate());
+            pst.setString(2, appt.getApptTime());
+            pst.setInt(3, appt.getDentistId());
+            pst.setInt(4, appt.getTreatmentId());
+            pst.setString(5, appt.getAppointmentNo());
+            
+            int rows = pst.executeUpdate();
+            return rows > 0;
+            
+        } catch (Exception e) {
+            System.out.println("Update Appointment Error: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    
+    
+    
 }
