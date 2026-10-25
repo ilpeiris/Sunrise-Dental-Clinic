@@ -83,6 +83,7 @@ public class PrinterSpooler {
             document.add(new Paragraph("Patient Name: " + newBill.getPatientName()));
             document.add(new Paragraph("Contact: " + newBill.getContactNumber()));
             document.add(new Paragraph("Attending Dentist: " + newBill.getDentistName()));
+            document.add(new Paragraph("Treatment Performed: " + newBill.getTreatmentName()));
             document.add(new Paragraph("\n------------------------------------------"));
             document.add(new Paragraph("Total Cost: LKR " + newBill.getTotalCost()));
             document.add(new Paragraph("=========================================="));

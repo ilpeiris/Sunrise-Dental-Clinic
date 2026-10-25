@@ -34,7 +34,7 @@ public class AuthenticationTest {
     // Test Case 1: Valid Login
     @Test
     public void testValidLogin() {
-        boolean result = authService.authenticate("admin", "admin123");
+        boolean result = authService.authenticate("isuru", "admin123");
         assertTrue("Valid credentials should return true", result);
     }
 

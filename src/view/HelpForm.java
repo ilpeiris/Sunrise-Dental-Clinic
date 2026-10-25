@@ -96,6 +96,7 @@ public class HelpForm extends javax.swing.JFrame {
         jTextArea4 = new javax.swing.JTextArea();
         btnBack = new javax.swing.JButton();
         CreateAccount = new javax.swing.JButton();
+        AddDentist = new javax.swing.JButton();
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -303,6 +304,9 @@ public class HelpForm extends javax.swing.JFrame {
         CreateAccount.setText("Create Staff Account");
         CreateAccount.addActionListener(this::CreateAccountActionPerformed);
 
+        AddDentist.setText("Add New Dentist");
+        AddDentist.addActionListener(this::AddDentistActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -321,8 +325,10 @@ public class HelpForm extends javax.swing.JFrame {
                         .addGap(336, 336, 336)
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(319, 319, 319)
-                        .addComponent(CreateAccount)))
+                        .addGap(250, 250, 250)
+                        .addComponent(CreateAccount)
+                        .addGap(18, 18, 18)
+                        .addComponent(AddDentist, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -336,7 +342,9 @@ public class HelpForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addComponent(CreateAccount)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CreateAccount)
+                    .addComponent(AddDentist))
                 .addContainerGap())
         );
 
@@ -353,8 +361,8 @@ public class HelpForm extends javax.swing.JFrame {
 
 
     javax.swing.JTextField txtName = new javax.swing.JTextField();
-    javax.swing.JTextField txtAddress = new javax.swing.JTextField(); // අලුත්
-    javax.swing.JTextField txtContact = new javax.swing.JTextField(); // අලුත්
+    javax.swing.JTextField txtAddress = new javax.swing.JTextField(); 
+    javax.swing.JTextField txtContact = new javax.swing.JTextField(); 
     javax.swing.JTextField txtUser = new javax.swing.JTextField();
     javax.swing.JPasswordField txtPass = new javax.swing.JPasswordField();
 
@@ -394,6 +402,79 @@ public class HelpForm extends javax.swing.JFrame {
     }
 
     }//GEN-LAST:event_CreateAccountActionPerformed
+
+    private void AddDentistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddDentistActionPerformed
+        // TODO add your handling code here:
+        
+        
+       // Create text fields for the popup
+    javax.swing.JTextField txtName = new javax.swing.JTextField();
+    javax.swing.JTextField txtAddress = new javax.swing.JTextField();
+    javax.swing.JTextField txtContact = new javax.swing.JTextField();
+    javax.swing.JTextField txtFee = new javax.swing.JTextField();
+
+    // Group them in an Object array for the JOptionPane
+    Object[] fields = {
+        "Dentist Name (e.g., Dr. John Doe):", txtName,
+        "Address:", txtAddress,
+        "Contact Number:", txtContact,
+        "Consultation Fee (LKR):", txtFee
+    };
+
+    // Show the popup dialog
+    int result = javax.swing.JOptionPane.showConfirmDialog(this, fields, "Add New Dentist", javax.swing.JOptionPane.OK_CANCEL_OPTION);
+
+    // If the user clicks "OK"
+    if (result == javax.swing.JOptionPane.OK_OPTION) {
+        String name = txtName.getText().trim();
+        String address = txtAddress.getText().trim();
+        String contact = txtContact.getText().trim();
+        String feeStr = txtFee.getText().trim();
+
+        
+        if (name.isEmpty() || address.isEmpty() || contact.isEmpty() || feeStr.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "All fields are required!", "Validation Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+     
+        if (!contact.matches("\\d{10}")) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Contact must be exactly 10 digits.", "Validation Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+      
+        double fee;
+        try {
+            fee = Double.parseDouble(feeStr);
+        } catch (NumberFormatException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Consultation Fee must be a valid number!", "Validation Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+     
+        model.Dentist newDentist = new model.Dentist();
+        
+        // Initialize DAO first to get the next Auto ID
+        dao.DentistDAO dao = new dao.DentistDAO(); 
+        newDentist.setDentistId(dao.getAutoDentistId()); // Properly generates DEN002, DEN003
+        
+        newDentist.setName(name);
+        newDentist.setAddress(address);
+        newDentist.setContactNumber(contact);
+        newDentist.setConsultationFee(fee);
+
+        // Send to DAO to save in Database
+        if (dao.addDentist(newDentist)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "New Dentist '" + name + "' Added Successfully!");
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Failed to add dentist.", "Database Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    } 
+        
+        
+        
+    }//GEN-LAST:event_AddDentistActionPerformed
 
     
 
@@ -443,6 +524,7 @@ public class HelpForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddDentist;
     private javax.swing.JButton CreateAccount;
     private javax.swing.JButton btnBack;
     private javax.swing.JDesktopPane jDesktopPane1;

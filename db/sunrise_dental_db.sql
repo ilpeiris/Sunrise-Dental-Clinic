@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 26, 2026 at 01:56 PM
+-- Generation Time: Sep 04, 2026 at 10:06 AM
 -- Server version: 9.1.0
 -- PHP Version: 8.3.14
 
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `appointment` (
   KEY `patient_id` (`patient_id`),
   KEY `dentist_id` (`dentist_id`),
   KEY `treatment_id` (`treatment_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `appointment`
@@ -107,14 +107,9 @@ INSERT INTO `appointment` (`id`, `appointment_no`, `appt_date`, `appt_time`, `pa
 (36, 'A028', '2026-09-04', '11:00 AM', 29, 1, 1),
 (37, 'A029', '2026-09-04', '09:00 AM', 30, 1, 1),
 (38, 'A030', '2026-09-04', '11:00 AM', 31, 2, 2),
-(39, 'A031', '2026-09-22', '10:00 AM', 33, 1, 1),
-(40, 'A032', '2026-09-20', '10:00 AM', 34, 1, 1),
-(41, 'A033', '2026-09-04', '11:30 AM', 35, 2, 2),
-(43, 'A034', '2026-09-20', '10:30 AM', 37, 2, 3),
-(44, 'A035', '2026-09-22', '11:00 AM', 38, 1, 1),
-(45, 'A036', '2026-09-20', '11:00 AM', 15, 1, 1),
-(46, 'A037', '2026-09-28', '10:00 AM', 39, 1, 1),
-(47, 'A038', '2026-09-25', '10:30 AM', 40, 1, 1);
+(39, 'A031', '2026-09-16', '10:00 AM', 33, 2, 2),
+(40, 'A032', '2026-09-24', '10:00 AM', 34, 1, 3),
+(41, 'A033', '2026-09-04', '11:30 AM', 35, 2, 2);
 
 --
 -- Triggers `appointment`
@@ -154,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `bill` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `bill_no` (`bill_no`),
   KEY `appointment_id` (`appointment_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `bill`
@@ -181,12 +176,7 @@ INSERT INTO `bill` (`id`, `bill_no`, `appointment_id`, `total_cost`) VALUES
 (20, 'B018', 36, 4000),
 (21, 'B019', 37, 4000),
 (22, 'B020', 38, 5500),
-(23, 'B021', 41, 5500),
-(24, 'B022', 43, 16500),
-(25, 'B023', 44, 5500),
-(26, 'B024', 45, 5500),
-(27, 'B025', 46, 4000),
-(28, 'B026', 47, 4000);
+(23, 'B021', 41, 5500);
 
 -- --------------------------------------------------------
 
@@ -230,7 +220,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `email` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `patient_id` (`patient_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `patient`
@@ -260,12 +250,7 @@ INSERT INTO `patient` (`id`, `patient_id`, `name`, `address`, `contact_number`, 
 (32, 'P1788508241799', 'testuser', 'asds', '0781234567', ''),
 (33, 'P1788512910460', 'Savindi', 'addadad', '0787654123', 'sunrisedental002@gmail.com'),
 (34, 'P1788512962761', 'anoma', 'tstse', '0761234756', ''),
-(35, 'P1788513239063', 'newnew', 'asdas', '0876543212', ''),
-(36, 'P1789886889172', 'anomad', 'test1', '0987125364', ''),
-(37, 'P1789889621184', 'Lakamalpeiris', 'Colombo', '0981273444', ''),
-(38, 'P1789905118309', 'Isuru Lakmal Peiris', 'Colombo, Sri Lanka', '0789623436', 'sunrisedental002@gmail.com'),
-(39, 'P1790351981679', 'sdfdsf', 'sdfsd', '4354543593', ''),
-(40, 'P1790352566069', 'Peirislakmal', 'Sri Lanka', '0984352617', 'sunrisedental002@gmail.com');
+(35, 'P1788513239063', 'newnew', 'asdas', '0876543212', '');
 
 -- --------------------------------------------------------
 
@@ -283,18 +268,14 @@ CREATE TABLE IF NOT EXISTS `staff` (
   `password` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `staff`
 --
 
 INSERT INTO `staff` (`id`, `name`, `address`, `contact_number`, `username`, `password`) VALUES
-(1, 'Admin User', 'Clinic HQ', '0771234567', 'admin', '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9'),
-(2, 'Admin User2', 'test', '1234567890', 'admin2', 'admin123'),
-(3, 'Isu', 'Panadura', '0897162534', 'admin3', 'admin123'),
-(4, 'Isuru', 'panadura', '098123546', 'Isuru', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'),
-(5, 'Lakmal', 'Colombo, Sri Lanka', '0897654321', 'admin8', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8');
+(1, 'Admin User', 'Clinic HQ', '0771234567', 'admin', 'admin123');
 
 -- --------------------------------------------------------
 

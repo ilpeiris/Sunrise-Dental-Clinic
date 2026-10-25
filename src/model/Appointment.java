@@ -14,7 +14,7 @@ public class Appointment {
     private String apptTime;
     private int patientId;
     private int dentistId;
-    private int treatmentId;
+   
 
     public Appointment() {}
 
@@ -33,6 +33,5 @@ public class Appointment {
     public int getDentistId() { return dentistId; }
     public void setDentistId(int dentistId) { this.dentistId = dentistId; }
 
-    public int getTreatmentId() { return treatmentId; }
-    public void setTreatmentId(int treatmentId) { this.treatmentId = treatmentId; }
+    
 }
