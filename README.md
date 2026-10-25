@@ -7,6 +7,9 @@
 An enterprise-grade, distributed Java desktop application built to manage the daily operations of the Sunrise Dental Clinic. This system features a robust 3-tier MVC architecture, advanced MySQL database integration, real-time SMTP email notifications, and automated PDF invoice generation.
 
 ---
+## Preview
+![Project Preview](preview.gif)
+
 
 ## 🚀 Key Features
 
